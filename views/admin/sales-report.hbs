@@ -1,0 +1,364 @@
+<div id="main">
+    <div class="card">
+        <div class="card-body">
+            <!-- Bordered Tabs Justified -->
+            <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
+                <li class="nav-item flex-fill" role="presentation">
+                    <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab"
+                        data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home"
+                        aria-selected="true">Daily Sales Report</button>
+                </li>
+                <li class="nav-item flex-fill" role="presentation">
+                    <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab"
+                        data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile"
+                        aria-selected="false">Monthly Sales Report</button>
+                </li>
+                <li class="nav-item flex-fill" role="presentation">
+                    <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab"
+                        data-bs-target="#bordered-justified-contact" type="button" role="tab" aria-controls="contact"
+                        aria-selected="false">Yearly Sales Report</button>
+                </li>
+            </ul>
+            <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+                <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel"
+                    aria-labelledby="home-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with hoverable rows -->
+                            <table class="table table-hover" id="dailyReport">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Total Amount</th>
+                                    </tr>
+                                </thead>
+                                 <button class="btn btn-outline-danger mt-2 mb-2 ml-5" onclick="weeklySalesDownload()"><i class="bi bi-download"></i> Download PDF</button>
+                                 <button class="btn btn-outline-success mt-2 mb-2 ml-5" onclick="weeklySales()"><i class="bi bi-download"></i> Download Excel</button>
+                                <tbody>
+                                    {{#each weeklySales}}
+                                    <tr>
+                                        {{!-- <th scope="row"><input type="checkbox" /></th> --}}
+
+                                        <td class="tm-product-name">{{this._id}}</td>
+
+                                        <td class="tm-product-name">{{this.total}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    <tr>
+                                        <td style="font-weight: bolder;">Total sales amount: {{weeklyTotal.[0].totalAmount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- End Table with hoverable rows -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel"
+                    aria-labelledby="profile-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with hoverable rows -->
+                            <table class="table table-hover" id="monthlyReport">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <button class="btn btn-outline-danger mt-2 mb-2 ml-5" onclick="monthlySalesDownload()"><i class="bi bi-download"></i> Download PDF</button>
+                                 <button class="btn btn-outline-success mt-2 mb-2 ml-5" onclick="monthlyData()"><i class="bi bi-download"></i> Download Excel</button>
+                                <tbody>
+                                    {{#each monthlySales}}
+                                    <tr>
+                                        {{!-- <th scope="row"><input type="checkbox" /></th> --}}
+
+                                        <td class="tm-product-name">{{this._id}}</td>
+                                        <td class="tm-product-name">{{this.total}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    <tr>
+                                        <td style="font-weight: bolder;">Total sales amount: {{monthlyTotal.[0].totalAmount}}</td>
+                                    </tr>
+                                </tbody>
+                              
+                            </table>
+                            <!-- End Table with hoverable rows -->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="bordered-justified-contact" role="tabpanel"
+                    aria-labelledby="contact-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Table with hoverable rows -->
+                            <table class="table table-hover" id="yearlyReport">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Total Amount</th>
+
+                                    </tr>
+                                </thead>
+                                <button class="btn btn-outline-danger mt-2 mb-2 ml-5" onclick="yearlySalesDownload()"><i class="bi bi-download"></i> Download PDF</button>
+                                <button class="btn btn-outline-success mt-2 mb-2 ml-5" onclick="yearlyData()"><i class="bi bi-download"></i> Download excel</button>
+                                <tbody>
+                                    {{#each yearlySales}}
+                                    <tr>
+                                        {{!-- <th scope="row"><input type="checkbox" /></th> --}}
+
+                                        <td class="tm-product-name">{{this._id}}</td>
+                                        <td class="tm-product-name">{{this.total}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    <tr>
+                                        <td style="font-weight: bolder;">Total sales amount: {{yearlyTotal.[0].totalAmount}}</td>
+                                
+                                    </tr>
+                                </tbody>
+                              
+                            </table>
+                            <!-- End Table with hoverable rows -->
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Bordered Tabs Justified -->
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+            <script type="text/javascript">
+                
+                function weeklySalesDownload() {
+
+                    console.log("haiiiiiiiiiii")
+                    var doc = new jsPDF('p', 'pt', 'letter');
+                    var htmlstring = '';
+                    var tempVarToCheckPageHeight = 0;
+                    var pageHeight = 0;
+                    pageHeight = doc.internal.pageSize.height;
+                    specialElementHandlers = {
+                        // element with id of "bypass" - jQuery style selector  
+                        '#bypassme': function (element, renderer) {
+                            // true = "handled elsewhere, bypass text extraction"  
+                            return true
+                        }
+                    };
+                    margins = {
+                        top: 150,
+                        bottom: 60,
+                        left: 40,
+                        right: 40,
+                        width: 600
+                    };
+                    var y = 20;
+                    doc.setLineWidth(2);
+                    doc.text(200, y = y + 30, "Weekly Sales Report");
+                    doc.autoTable({
+                        html: '#dailyReport',
+                        startY: 70,
+                        theme: 'grid',
+                        columnStyles: {
+                            0: {
+                                cellWidth: 180,
+                            },
+                            1: {
+                                cellWidth: 80,
+                            },
+                            2: {
+                                cellWidth: 80,
+                            },
+                            {{!-- 3: {
+                                cellWidth: 80,
+                            } --}}
+                        },
+                        styles: {
+                            minCellHeight: 40
+                        }
+                    })
+                    doc.save('sales-weekly-report.pdf');
+                } 
+
+
+                function monthlySalesDownload() {
+                    console.log("heloooooooooooooooooo")
+                    var doc = new jsPDF('p', 'pt', 'letter');
+                    var htmlstring = '';
+                    var tempVarToCheckPageHeight = 0;
+                    var pageHeight = 0;
+                    pageHeight = doc.internal.pageSize.height;
+                    specialElementHandlers = {
+                        // element with id of "bypass" - jQuery style selector  
+                        '#bypassme': function (element, renderer) {
+                            // true = "handled elsewhere, bypass text extraction"  
+                            return true
+                        }
+                    };
+                    margins = {
+                        top: 150,
+                        bottom: 60,
+                        left: 40,
+                        right: 40,
+                        width: 600
+                    };
+                    var y = 20;
+                    doc.setLineWidth(2);
+                    doc.text(200, y = y + 30, "Monthly Sales Report");
+                    doc.autoTable({
+                        html: '#monthlyReport',
+                        startY: 70,
+                        theme: 'grid',
+                        columnStyles: {
+                            0: {
+                                cellWidth: 180,
+                            },
+                            1: {
+                                cellWidth: 80,
+                            },
+                            2: {
+                                cellWidth: 80,
+                            },
+                            {{!-- 3: {
+                                cellWidth: 80,
+                            } --}}
+                        },
+                        styles: {
+                            minCellHeight: 40
+                        }
+                    })
+                    doc.save('sales-monthly-report.pdf');
+                } 
+
+
+                function yearlySalesDownload() {
+                    var doc = new jsPDF('p', 'pt', 'letter');
+                    var htmlstring = '';
+                    var tempVarToCheckPageHeight = 0;
+                    var pageHeight = 0;
+                    pageHeight = doc.internal.pageSize.height;
+                    specialElementHandlers = {
+                        // element with id of "bypass" - jQuery style selector  
+                        '#bypassme': function (element, renderer) {
+                            // true = "handled elsewhere, bypass text extraction"  
+                            return true
+                        }
+                    };
+                    margins = {
+                        top: 150,
+                        bottom: 60,
+                        left: 40,
+                        right: 40,
+                        width: 600
+                    };
+                    var y = 20;
+                    doc.setLineWidth(2);
+                    doc.text(200, y = y + 30, "Yearly Sales Report");
+                    doc.autoTable({
+                        html: '#yearlyReport',
+                        startY: 70,
+                        theme: 'grid',
+                        columnStyles: {
+                            0: {
+                                cellWidth: 180,
+                            },
+                            1: {
+                                cellWidth: 80,
+                            },
+                            2: {
+                                cellWidth: 80,
+                            },
+                            {{!-- 3: {
+                                cellWidth: 80,
+                            } --}}
+                        },
+                        styles: {
+                            minCellHeight: 40
+                        }
+                    })
+                    doc.save('sales-yearly-report.pdf');
+                } 
+            </script>
+
+            <script>
+                function weeklySales() {
+                    const data = `
+                    date, Total, Total Sales
+                    {{#each weeklySales}}
+                     ,'{{_id}}',{{total}}','{{weeklyTotal.[0].totalAmount}}'
+                    {{/each}}`
+
+                    const blob = new Blob([data], { type: 'octet-stream' })
+
+                    const href = URL.createObjectURL(blob)
+
+                    const a = Object.assign(document.createElement('a'), {
+                        href,
+                        style: 'display:none',
+                        download: 'data.csv'
+                    })
+
+                    document.body.appendChild(a)
+
+                    a.click()
+
+                    URL.revokeObjectURL(href)
+
+                    a.remove()
+                }
+
+                function monthlyData() {
+                    const data = `
+                    date, Total, Total Sales
+                    {{#each monthlySales}}
+                     ,'{{_id}}',{{total}}','{{monthlyTotal.[0].totalAmount}}'
+                    {{/each}}`
+                    const blob = new Blob([data], { type: 'octet-stream' })
+
+                    const href = URL.createObjectURL(blob)
+
+                    const a = Object.assign(document.createElement('a'), {
+                        href,
+                        style: 'display:none',
+                        download: 'data.csv'
+                    })
+
+                    document.body.appendChild(a)
+
+                    a.click()
+
+                    URL.revokeObjectURL(href)
+
+                    a.remove()
+                }
+
+                function yearlyData() {
+                    const data = `
+                     ,date, Total, Total Sales
+                    {{#each yearlySales}}
+                     ,'{{_id}}',{{total}}','{{yearlyTotal.[0].totalAmount}}'
+                    {{/each}}`
+
+                    const blob = new Blob([data], { type: 'octet-stream' })
+
+                    const href = URL.createObjectURL(blob)
+
+                    const a = Object.assign(document.createElement('a'), {
+                        href,
+                        style: 'display:none',
+                        download: 'data.csv'
+                    })
+
+                    document.body.appendChild(a)
+
+                    a.click()
+
+                    URL.revokeObjectURL(href)
+
+                    a.remove()
+                }
+            </script>

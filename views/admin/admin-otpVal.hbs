@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <div class="logo">
+        {{!-- <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png"
+            alt=""> --}}
+    </div>
+    <div class="text-center mt-4 name">
+        myPhone.com
+    </div>
+    {{#if valid}}
+         <div class="alert alert-danger text-center" role="alert">
+           Enter valid otp
+          </div>
+     {{/if}}
+
+    <form action="/admin/validation" method="post" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="number" name="otp" id="number" placeholder="Enter OTP">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn mt-3" style="width: 200px;">Submit</button>
+        </div>
+</div>

@@ -1,0 +1,141 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css"
+    href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css"
+    href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/javascripts/ajax.js"></script>
+  <title>Document</title>
+</head>
+
+<body style="background-color:white;">
+
+  <section class="main" id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card info-card revenue-card">
+
+            <div class="card-body">
+              <h5 class="card-title">Billing Address</h5>
+
+              <div class="align-items-center">
+                  <P>{{billing.address.name}}</P>
+                
+                     <P>{{billing.address.mobile}}</P>
+                  
+                    <P>{{billing.address.address}}</P>
+                   
+                     <P>{{billing.address.street}}</P>
+                     
+                      <P>{{billing.address.pincode}}</P>
+                <div class="ps-3">
+                  <h6 style="font-size: larger;"></h6>
+                  
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- End Revenue Card -->
+        <div class="col-md-4">
+          <div class="card info-card revenue-card">
+
+            <div class="card-body">
+              <h5 class="card-title">Bill Details</h5>
+
+              <div class="align-items-center">
+                  <P>Product Price : ₹{{billing.total}}</P>
+                   <P><b>Total Amount : ₹{{billing.total}}/-</b></P>
+                <div class="ps-3">
+                  <h6 style="font-size: larger;"></h6>
+                  <span class="text-success small pt-1 fw-bold"></span> <span
+                    class="text-muted small pt-2 ps-1"></span>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- End Revenue Card -->
+
+
+      </div>
+      <div class="mt-3">
+        {{!-- <div class="row mt-1">
+          <a href="/admin/add-user" class="btn btn-success mx-auto mt-5" style="width:150px;height: 50;">add user</a>
+        </div> --}}
+        <table class="table" id="myTable">
+          <h5>Order details</h5>
+          <thead class="mt-3">
+            <tr>
+
+              
+              <th scope="col">Product</th>
+              <th scope="col">Product name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total amount</th>
+              <th scope="col">Status</th>
+               <th scope="col">Change Status</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {{#each order}}
+            <tr>
+              <td>
+                
+                <img src="/images/product/{{this.product.img.[3]}}" alt="" style="width:100px;height:70px;">
+
+              </td>
+              <td>{{this.product.productname}}</td>
+              <td>₹{{this.product.price}}</td>
+              <td>{{this.quantity}}</td>
+              <td>₹{{this.totalAmount}}</td>
+               <td>{{this.orderStatus}}</td>
+              <td>
+                  <div class="input-group mt-3" style="width: 185px;">
+                    <select class="custom-select" id="inputGroupSelect04{{this.product._id}}">
+                      <option  disabled selected>update status..</option>
+                      <option >Order placed</option>
+                      <option>product shipped</option>
+                      <option >Delivered</option>
+                      <option >Cancelled</option>
+                    </select>
+                    <div class="input-group-append">
+                      <button class="btn btn-warning" onclick="statusChange('{{this._id}}','{{this.product._id}}')" type="button">submit</button>
+                    </div>
+                  </div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {{!-- <script type="text/javascript" charset="utf8"
+    src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" charset="utf8" --}}
+    {{!-- src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script> --}}
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function () {
+    $('#myTable').DataTable({
+      "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+      }
+    });
+
+  });
+</script>

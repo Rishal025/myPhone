@@ -1,0 +1,45 @@
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">My Profile</h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            
+<section class="mt-5 text-center ">
+
+    <div class="container userSignup">
+
+      {{#if userExist}}
+         <div class="alert alert-danger text-center mx-auto" role="alert" style="width:300px;">
+           User already exist in this mail id
+         </div>
+      {{/if}}
+
+
+        <div class="row justify-content-center">
+        <form class="mt-5" action="/profile-updation" method="post" onsubmit="return validation()">
+          <div class="form-group">
+               <input type="text" class="form-control" aria-describedby="nameHelp" name="name" id="Name" onkeyup="validateName()" placeholder="Your Full Name" style="width:500px;" value="{{user.name}}">
+                <span id="name" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" aria-describedby="emailHelp" name="email" id="Email" onkeyup="validEmail()" placeholder="Your Email" style="width:500px;" value="{{user.email}}">
+            <span id="email" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" id="phonenumber" onkeyup="validPhonenumber()" name="phone" placeholder="Your Phone Number" style="width:500px;" value="{{user.phone}}">
+            <span id="phonenumbers" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inlineRadioOptions" onkeyup="validPhonenumber()" name="inlineRadioOptions" placeholder="Gender" style="width:500px;" value="{{user.inlineRadioOptions}}">
+            <span id="phonenumbers" class="text-danger"></span>
+          </div>
+          <br>
+          <button type="submit" class="btn mt-2" style="background-color:#800080;color: white;height:40px;">Update profile</button>
+        </form>
+        </div>
+       
+    </div>
+    <div class="col-md-12 mt-5">
+       <p style="display: block; visibility: hidden;">iiiiiiiiiiii</p>
+    </div>
+</section>

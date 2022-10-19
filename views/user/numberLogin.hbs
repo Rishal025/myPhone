@@ -1,0 +1,27 @@
+<div class="wrapper">
+        <div class="logo">
+            {{!-- <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> --}}
+        </div>
+        <div class="text-center mt-4 name">
+            myPhone.com
+        </div>
+        {{#if errMessage}}
+        <div class="alert alert-danger text-center" role="alert">
+           {{errMessage}}
+          </div>
+          {{/if}}
+       
+        <form action="/otpValidate" method="post" class="p-3 mt-3">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="tel" name="number" id="number" placeholder="Enter Phone Number">
+            </div>
+        <div class="text-center">
+             <button type="submit" class="btn mt-3" style="width: 200px;">GET OTP</button>
+        </div>    
+
+        {{#if errMessage}}
+         <div class="text-center mt-3">
+            <a href="/guestHome" style="font-size:medium; text-decoration: none;" class="text-danger">Exit</a>
+        </div> 
+       {{/if}}

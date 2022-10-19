@@ -1,0 +1,77 @@
+<div class="page-content">
+            	<div class="container">
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Product</th>
+                                
+								<th>Price</th>
+                              
+								{{!-- <th>Status</th> --}}
+								<th>Quantity</th>
+								
+							</tr>
+						</thead>
+                       
+						<tbody>
+							
+							<tr class="">
+								<td class="product-col">
+									<div class="product">
+										<figure class="product-media">
+											<a href="/product-view/{{this.product._id}}">
+												<img src="/images/product/{{products.img.[3]}}" alt="Product image">
+											</a>
+										</figure>
+
+										<h3 class="product-title">
+                                            
+											<a href="/product-view/{{this.product._id}}">{{products.productname}}</a>
+										</h3><!-- End .product-title -->
+									</div><!-- End .product -->
+								</td>
+								<td class="price-col">₹{{products.price}}</td>
+                                {{!-- <td>{{this.deliveryDetails.address.HouseName}},{{this.deliveryDetails.address.streetName}},{{this.deliveryDetails.address.pincode}},{{this.deliveryDetails.address.state}} --}} 
+								{{!-- <td class="stock-col"><span class="in-stock" id="orderstatusid">{{this.orderStatus}}</span></td> --}}
+								<td class="action-col ml-5">Qty.{{quantity}}</td>
+								
+							</tr>
+		              
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+
+                    <form id="returnProduct">
+                       <div class="col-md-6 mx-auto mt-4">
+                         <div class="form-group">
+                            {{!-- <label for="exampleFormControlSelect1">Why are you returning this product</label> --}}
+                            <select class="form-control" id="exampleFormControlSelect1" name="reason" required>
+                            <option value="" disabled selected>Why are you returning this product</option>
+                            <option>Accidentaly ordered</option>
+                            <option>Better price available</option>
+                            <option>Missed estimated delivery date</option>
+                            <option>missing parts or accessories</option>
+							<option>Damaged/not working properly</option>
+                            </select>
+                             <div class="invalid-feedback">Example invalid custom select feedback</div>
+                        </div>
+                       </div>
+
+                        <div class="col-md-6 mx-auto fmb-3">
+                            <label for="validationTextarea">Comments (*required)</label>
+                            <textarea name="description" class="form-control " id="validationTextarea" placeholder="Comments.." required></textarea>
+                            
+                        </div>
+						<input name="orderId" value="{{orderId}}" hidden>
+						<input type="text" name="prodId" value="{{prodId}}" hidden>
+						<input type="text" name="status" value="return requested" hidden>
+
+                        <div class="text-center">
+							<!-- Button trigger modal -->
+							<button type="submit" class="btn btn-outline-success" >
+							Request for return
+							</button>
+                        </div>
+                    </form>
+	            	
+            	</div><!-- End .container -->
+            </div><!-- End .page-content -->

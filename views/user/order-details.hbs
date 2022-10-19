@@ -1,0 +1,132 @@
+<style>
+    .hover-div {
+    border-top: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 10px 0px;
+}
+.hover-div {
+    border-top: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 10px 0px;
+}
+</style>
+<div class="container">
+
+<div class="col-12 col-md-12">
+
+    <div class="product-body hover-div">
+		<h6><u>Billing address</u> </h5>
+        <div class="row">
+            <div class="col-9">
+                <p style="font-weight:bold;">{{address.address.name}} | {{address.address.mobile}}</p>
+            </div>
+        </div>
+
+        <p>{{address.address.address}},{{address.address.street}}</p>
+        <p>{{address.address.pincode}}</p>
+
+    </div><!-- End .product-body -->
+
+</div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+</div>
+
+<div class="page-content">
+            	<div class="container">
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Product</th>
+                                
+								<th>Price</th>
+                              
+								<th>Status</th>
+								<th>Quantity</th>
+                                <th>Actions</th>
+								
+							</tr>
+						</thead>
+
+						<tbody>
+                            {{#each Orderdetails}}
+
+                            
+							<tr class="">
+								<td class="product-col">
+									<div class="product">
+										<figure class="product-media">
+											<a href="/product-view/{{this.product._id}}">
+												<img src="/images/product/{{this.product.img.[3]}}" alt="Product image">
+											</a>
+										</figure>
+
+										<h3 class="product-title">
+                                            
+											<a href="/product-view/{{this.product._id}}">{{this.product.productname}}</a>
+										</h3><!-- End .product-title -->
+									</div><!-- End .product -->
+								</td>
+								<td class="price-col">₹{{this.totalAmount}}</td>
+                                {{!-- <td>{{this.deliveryDetails.address.HouseName}},{{this.deliveryDetails.address.streetName}},{{this.deliveryDetails.address.pincode}},{{this.deliveryDetails.address.state}} --}} 
+								<td class="stock-col"><span class="in-stock" id="orderstatusid">{{this.orderStatus}}</span></td>
+								<td class="action-col ml-5">Qty.{{this.quantity}}</td>
+								{{#if this.delivered}}
+								 <td>
+							      {{!-- <a class="btn btn-outline-warning"  href="/return-product/?orderId={{this._id}},prodId={{this.product._id}}"> Return</a> --}}
+                                  <a class="btn btn-outline-warning"  href="/return-product/?prodId={{this.product._id}}&quantity={{this.quantity}}&orderId={{this._id}}">Return</a>
+					             </td>  
+
+								 {{else if this.returnRequest}}  
+                                  <td class="action-col">
+										<div class="dropdown">
+										<button class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">Retun requested</button>
+										</div>
+								  </td>
+
+								  {{else if returnApproved}}
+
+                                    <td class="action-col">
+										<div class="dropdown">
+										<button class="btn btn-success" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false">Retun Approved</button>
+										</div>
+								    </td>
+
+								{{else}}
+
+								     {{#if this.cancelled}}
+										<td class="action-col">
+										<div class="dropdown">
+										<button class="btn btn-danger disabled" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false" onclick="cancelOrder('{{this._id}}','{{this.product._id}}')">
+										<i>x</i>Cancel Order
+										</button>
+										</div>
+										</td>
+									
+									{{else}}
+											<td class="action-col">
+											<div class="dropdown">
+											<button class="btn btn-danger" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false" onclick="cancelOrder('{{this._id}}','{{this.product._id}}','{{this.quantity}}')">
+											<i>x</i>Cancel Order
+											</button>
+											</div>
+											</td>
+									{{/if}}
+
+								 {{/if}}
+                              
+							</tr>
+                        {{/each}}
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+	            	
+            	</div><!-- End .container -->
+            </div><!-- End .page-content -->

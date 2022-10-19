@@ -1,0 +1,494 @@
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<body>
+    <div class="page-wrapper">
+        <main class="main">
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="products mb-3">
+                                {{#each products}}
+                                <div class="product product-list">
+
+                                    <div class="row">
+                                        <div class="col-6 col-lg-3">
+                                            <figure class="product-media">
+                                                <span class="product-label label-new">{{this.productname}}</span>
+                                               
+                                                <a href="/product">
+                                                    <img src="/images/product/{{this.img.[3]}}"
+                                                        style="width:200px ; height: 200px;" alt="Product image"
+                                                        class="product-image">
+                                                </a>
+                                            </figure><!-- End .product-media -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                        <div class="col-6 col-lg-3 order-lg-last">
+                                            <div class="product-list-action">
+                                                 {{#if this.brandDiscount}}
+                                               
+                                                <div class="product-price">
+                                                    Rs.{{this.price}}
+                                                    
+                                                </div><!-- End .product-price -->
+                                                 <div>
+                                                   <strike>{{this.originalPrice}}</strike><span>&nbsp {{this.discountPercentage}}% Off</span>
+                                                        
+                                                </div>
+                                                {{else}}
+                                                <div class="product-price">
+                                                    Rs.{{this.price}}
+                                                    
+                                                </div><!-- End .product-price -->
+                                                {{/if}}
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 20%;"></div>
+                                                        <!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                    <span class="ratings-text">( 2 Reviews )</span>
+                                                </div><!-- End .rating-container -->
+
+                                                 <button class="btn btn-outline-dark" onclick="moveToWishlist('{{this._id}}')"><span>MOVE TO WISHLIST</span></button>
+                                                {{#unless this.stock}}
+                                                    <div class="mt-1">
+                                                        <p class="text-danger">Out of stock</p>
+                                                    </div>
+                                                {{/unless}}
+
+                                                  
+                                            </div><!-- End .product-list-action -->
+                                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                        <div class="col-lg-6">
+                                            <div class="product-body product-action-inner">
+                                            
+                                                <h3 class="product-title"><a
+                                                        href="/product-view/{{this._id}}">{{this.productname}}</a></h3>
+                                                <!-- End .product-title -->
+
+                                                <div class="product-content">
+                                                    <p>{{this.Description}}</p>
+                                                </div><!-- End .product-content -->
+
+                                                <div class="product-nav product-nav-thumbs">
+                                                    <a href="#" class="active">
+                                                        <img src="/images/product/{{this.img.[1]}}"
+                                                            style="width:40px ; height: 40px;" alt="product desc">
+                                                    </a>
+                                                    <a href="#">
+                                                        <img src="/images/product/{{this.img.[2]}}"
+                                                            style="width:40px ; height: 40px;" alt="product desc">
+                                                    </a>
+
+                                                    <a href="#">
+                                                        <img src="/images/product/{{this.img.[0]}}"
+                                                            style="width:40px ; height: 40px;" alt="product desc">
+                                                    </a>
+                                                </div><!-- End .product-nav -->
+                                            </div><!-- End .product-body -->
+                                        </div><!-- End .col-lg-6 -->
+                                    </div><!-- End .row -->
+
+                                </div><!-- End .product -->
+                                {{/each}}
+                            </div>
+
+
+
+
+                            {{!-- <div class="product product-list">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <figure class="product-media">
+                                            <a href="product.html">
+                                                <img src="assets/images/products/product-5.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                        </figure><!-- End .product-media -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-6 col-lg-3 order-lg-last">
+                                        <div class="product-list-action">
+                                            <div class="product-price">
+                                                $84.00
+                                            </div><!-- End .product-price -->
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 0%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 0 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+                                            <div class="product-action">
+                                                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                    title="Quick view"><span>quick view</span></a>
+                                                <a href="#" class="btn-product btn-compare"
+                                                    title="Compare"><span>compare</span></a>
+                                            </div><!-- End .product-action -->
+
+                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        </div><!-- End .product-list-action -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-lg-6">
+                                        <div class="product-body product-action-inner">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="Add to wishlist"><span>add to wishlist</span></a>
+                                            <div class="product-cat">
+                                                <a href="#">Dresses</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="product.html">Dark yellow lace cut out
+                                                    swing dress</a></h3><!-- End .product-title -->
+
+                                            <div class="product-content">
+                                                <p>Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel,
+                                                    dapibus id, mattis vel, nisi. </p>
+                                            </div><!-- End .product-content -->
+
+                                            <div class="product-nav product-nav-thumbs">
+                                                <a href="#" class="active">
+                                                    <img src="assets/images/products/product-5-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="assets/images/products/product-5-2-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                            </div><!-- End .product-nav -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .col-lg-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-list">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <figure class="product-media">
+                                            <span class="product-label label-out">Out of Stock</span>
+                                            <a href="product.html">
+                                                <img src="assets/images/products/product-6.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                        </figure><!-- End .product-media -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-6 col-lg-3 order-lg-last">
+                                        <div class="product-list-action">
+                                            <div class="product-price">
+                                                <span class="out-price">$120.00</span>
+                                            </div><!-- End .product-price -->
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 80%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 6 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+                                            <div class="product-action">
+                                                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                    title="Quick view"><span>quick view</span></a>
+                                                <a href="#" class="btn-product btn-compare"
+                                                    title="Compare"><span>compare</span></a>
+                                            </div><!-- End .product-action -->
+
+                                            <a href="#" class="btn-product btn-cart disabled"><span>add to
+                                                    cart</span></a>
+                                        </div><!-- End .product-list-action -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-lg-6">
+                                        <div class="product-body product-action-inner">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="Add to wishlist"><span>add to wishlist</span></a>
+                                            <div class="product-cat">
+                                                <a href="#">Jackets</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="product.html">Khaki utility boiler
+                                                    jumpsuit</a></h3><!-- End .product-title -->
+
+                                            <div class="product-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
+                                                    hendrerit. Pellentesque </p>
+                                            </div><!-- End .product-content -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .col-lg-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-list">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <figure class="product-media">
+                                            <a href="product.html">
+                                                <img src="assets/images/products/product-7.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                        </figure><!-- End .product-media -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-6 col-lg-3 order-lg-last">
+                                        <div class="product-list-action">
+                                            <div class="product-price">
+                                                $76.00
+                                            </div><!-- End .product-price -->
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 20%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 2 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+                                            <div class="product-action">
+                                                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                    title="Quick view"><span>quick view</span></a>
+                                                <a href="#" class="btn-product btn-compare"
+                                                    title="Compare"><span>compare</span></a>
+                                            </div><!-- End .product-action -->
+
+                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        </div><!-- End .product-list-action -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-lg-6">
+                                        <div class="product-body product-action-inner">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="Add to wishlist"><span>add to wishlist</span></a>
+                                            <div class="product-cat">
+                                                <a href="#">Jeans</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="product.html">Blue utility pinafore denim
+                                                    dress</a></h3><!-- End .product-title -->
+
+                                            <div class="product-content">
+                                                <p>Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel,
+                                                    dapibus id, mattis vel, nisi. </p>
+                                            </div><!-- End .product-content -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .col-lg-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-list">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <figure class="product-media">
+                                            <span class="product-label label-new">New</span>
+                                            <a href="product.html">
+                                                <img src="assets/images/products/product-8.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                        </figure><!-- End .product-media -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-6 col-lg-3 order-lg-last">
+                                        <div class="product-list-action">
+                                            <div class="product-price">
+                                                $84.00
+                                            </div><!-- End .product-price -->
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 0%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 0 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+                                            <div class="product-action">
+                                                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                    title="Quick view"><span>quick view</span></a>
+                                                <a href="#" class="btn-product btn-compare"
+                                                    title="Compare"><span>compare</span></a>
+                                            </div><!-- End .product-action -->
+
+                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        </div><!-- End .product-list-action -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-lg-6">
+                                        <div class="product-body product-action-inner">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="Add to wishlist"><span>add to wishlist</span></a>
+                                            <div class="product-cat">
+                                                <a href="#">Shoes</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="product.html">Beige knitted elastic
+                                                    runner shoes</a></h3><!-- End .product-title -->
+
+                                            <div class="product-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
+                                                    hendrerit. Pellentesque </p>
+                                            </div><!-- End .product-content -->
+
+                                            <div class="product-nav product-nav-thumbs">
+                                                <a href="#" class="active">
+                                                    <img src="assets/images/products/product-8-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="assets/images/products/product-8-2-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                            </div><!-- End .product-nav -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .col-lg-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-list">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <figure class="product-media">
+                                            <a href="product.html">
+                                                <img src="assets/images/products/product-9.jpg" alt="Product image"
+                                                    class="product-image">
+                                            </a>
+                                        </figure><!-- End .product-media -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-6 col-lg-3 order-lg-last">
+                                        <div class="product-list-action">
+                                            <div class="product-price">
+                                                $52.00
+                                            </div><!-- End .product-price -->
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <div class="ratings-val" style="width: 80%;"></div>
+                                                    <!-- End .ratings-val -->
+                                                </div><!-- End .ratings -->
+                                                <span class="ratings-text">( 1 Reviews )</span>
+                                            </div><!-- End .rating-container -->
+
+                                            <div class="product-action">
+                                                <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                    title="Quick view"><span>quick view</span></a>
+                                                <a href="#" class="btn-product btn-compare"
+                                                    title="Compare"><span>compare</span></a>
+                                            </div><!-- End .product-action -->
+
+                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        </div><!-- End .product-list-action -->
+                                    </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                    <div class="col-lg-6">
+                                        <div class="product-body product-action-inner">
+                                            <a href="#" class="btn-product btn-wishlist"
+                                                title="Add to wishlist"><span>add to wishlist</span></a>
+                                            <div class="product-cat">
+                                                <a href="#">Bags</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="product.html">Orange saddle lock front
+                                                    chain cross body bag</a></h3><!-- End .product-title -->
+
+                                            <div class="product-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
+                                                    hendrerit. Pellentesque </p>
+                                            </div><!-- End .product-content -->
+
+                                            <div class="product-nav product-nav-thumbs">
+                                                <a href="#" class="active">
+                                                    <img src="assets/images/products/product-9-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="assets/images/products/product-9-2-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="assets/images/products/product-9-3-thumb.jpg"
+                                                        alt="product desc">
+                                                </a>
+                                            </div><!-- End .product-nav -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .col-lg-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .product -->
+                        </div><!-- End .products --> --}}
+
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                {{#ifEquals '1' currentPage false}}
+							        <li class="page-item disabled" >
+							            <a class="page-link page-link-prev" href="/products/?page={{../previous.page}}" aria-label="Previous" tabindex="-1">
+							                <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+							            </a>
+							        </li>
+									{{else}}
+									 <li class="page-item">
+							            <a class="page-link page-link-prev" href="/products/?page={{../previous.page}}" aria-label="Previous" tabindex="-1" >
+							                <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+							            </a>
+							        </li>
+									{{/ifEquals}}
+									{{#each pages}}
+									
+							        <li class="page-item active" aria-current="page"><a class="page-link" href="/products/?page={{this}}">{{this}}</a></li>
+									
+									{{/each}}
+									{{#ifEquals pageCount currentPage false}}
+							        <li class="page-item disabled" >
+							            <a class="page-link page-link-next" href="/products/?page={{../next.page}}" aria-label="Next">
+							                Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+							            </a>
+							        </li>
+									{{else}}
+									 <li class="page-item">
+							            <a class="page-link page-link-next" href="/products/?page={{../next.page}}" aria-label="Next">
+							                Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+							            </a>
+							        </li>
+									{{/ifEquals}}
+                            </ul>
+                        </nav>
+                    </div><!-- End .col-lg-9 -->
+                    <aside class="col-lg-3 order-lg-first">
+                        <div class="sidebar sidebar-shop">
+                            <div class="widget widget-clean">
+                                <label>Filters:</label>
+                                <a href="#" class="sidebar-filter-clear">Clean All</a>
+                            </div><!-- End .widget widget-clean -->
+
+                            <div class="widget widget-collapsible">
+                                <h3 class="widget-title">
+                                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+                                        aria-controls="widget-1">
+                                        Brand
+                                    </a>
+                                </h3><!-- End .widget-title -->
+
+                                <div class="collapse show" id="widget-1">
+                                    <div class="widget-body">
+                                        <div class="filter-items filter-items-count">
+                                            <div class="filter-item">
+                                                 
+                                                <form action="/filter-products" method="post">
+                                                {{#each brand}}
+                                                <div class="custom-control custom-checkbox">
+                                                
+                                                    <input type="checkbox" class="custom-control-input" id="cat-1{{this._id}}" value="{{this._id}}" name="brandId">
+                                               
+                                                    <label class="custom-control-label" for="cat-1{{this._id}}">{{this.brandname}}</label>
+                                             
+                                               
+                                                </div><!-- End .custom-checkbox -->
+                                                 {{/each}}
+                                               
+                                                <button class="btn btn-outline-success mt-5" type="submit">Apply Filter</button>
+                                                </form>
+                                                
+                                
+                                            </div><!-- End .filter-item -->
+                                        </div><!-- End .filter-items -->
+                                    </div><!-- End .widget-body -->
+                                </div><!-- End .collapse -->
+                            </div><!-- End .widget -->
+                        </div><!-- End .container -->
+                </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+       
+</body>

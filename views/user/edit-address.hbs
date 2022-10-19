@@ -1,0 +1,58 @@
+
+<section>
+    <div class="container">
+        <form action="/update-address" method="post">
+            <h2 class="checkout-title">EDIT ADDRESS</h2><!-- End .checkout-title -->
+            
+              <label>Full Name *</label>
+              <input type="text" class="form-control" name="name" value="{{result.userAddress.name}}"  required>
+
+            <label>Company Name (Optional)</label>
+            <input type="text" class="form-control" name="companyname">
+
+            <label>Country *</label>
+            <input type="text" class="form-control" name="country" value="{{result.userAddress.country}}" required>
+
+            <label>Street address *</label>
+            <input type="text" class="form-control" placeholder="House number and Street name" name="streetAddress1" value="{{result.userAddress.street}}"
+                required>
+            <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." name="streetAddress2" value="{{result.userAddress.address}}"
+                required>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Town / City *</label>
+                    <input type="text" class="form-control" name="town" value="{{result.userAddress.town}}" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="col-sm-6">
+                    <label>State / County *</label>
+                    <input type="text" class="form-control" name="state" value="{{result.userAddress.state}}" required>
+                </div><!-- End .col-sm-6 -->
+            </div><!-- End .row -->
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Postcode / ZIP *</label>
+                    <input type="text" class="form-control" name="pin" value="{{result.userAddress.pincode}}" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="col-sm-6">
+                    <label>Phone *</label>
+                    <input type="tel" class="form-control" name="phone" value="{{result.userAddress.mobile}}" required>
+                </div><!-- End .col-sm-6 -->
+            </div><!-- End .row -->
+
+            <label>Email address *</label>
+            <input type="email" class="form-control" name="email" value="{{result.userAddress.email}}">
+            <input type="text" name="user" value="{{user._id}}" hidden>
+
+            <button type="submit" class="btn btn-outline-primary-2 mb-5">
+                <span>EDIT ADDRESS</span>
+            </button>
+
+
+        </form>
+    </div>
+</section>
+ 

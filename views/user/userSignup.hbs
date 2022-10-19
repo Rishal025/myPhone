@@ -1,0 +1,163 @@
+<section class="mt-5 text-center ">
+    <div class="container userSignup">
+            <h5><b>WELCOME TO MYPHONE.COM</b></h5>
+            <div>
+              {{#if errMessage}}
+              <div class="alert alert-danger" role="alert">
+              {{errMessage}}
+              </div>
+              {{/if}}
+
+            </div>
+        <div class="row justify-content-center">
+        <form class="mt-5" action="/signup" method="post" onsubmit="return validation()">
+          <div class="form-group">
+               <input type="text" class="form-control" aria-describedby="nameHelp" name="name" id="Name" onkeyup="validateName()" placeholder="Your Full Name" style="width:500px; height:40px;">
+               <span id="name" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" aria-describedby="emailHelp" name="email" id="Email" onkeyup="validEmail()" placeholder="Your Email" style="width:500px;height:40px;">
+            <span id="email" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" onkeyup="validPassword()" name="password" placeholder="Set Password"  style="width:500px;height:40px;">
+            <span id="passwords" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="cpassword" onkeyup="validcPassword()" name="cpassword" placeholder="Confirm Password"  style="width:500px;height:40px;">
+            <span id="cpasswords" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <input type="tel" class="form-control" id="phonenumber" onkeyup="validPhonenumber()" name="phone" placeholder="Your Phone Number" style="width:500px;height:40px;">
+            <span id="phonenumbers" class="text-danger"></span>
+          </div>
+          <div class="form-check form-check-inline">
+             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" name="male">
+             <label class="form-check-label" for="inlineRadio1">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female" name="female">
+             <label class="form-check-label" for="inlineRadio2">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="transgender" name="transgender" required>
+              <label class="form-check-label" for="inlineRadio3">Transgender</label>
+          </div>
+          <br>
+          <button type="submit" class="btn mt-5" style="background-color:#800080;color: white;height:40px;">Create Account</button>
+           <button type="reset" class="btn btn-dark mt-5" style="height:40px;">clear</button>
+           <a type="button" class="btn btn-success mt-5" href="/" style="height:40px;">Back to Home</a>
+        </form>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    var errorName = document.getElementById('name')
+    var errorEmail = document.getElementById('email')
+     var errorPassword = document.getElementById('passwords')
+     var errorcPassword = document.getElementById('cpasswords')
+     var errorPhonenumber = document.getElementById('phonenumbers')
+    
+    function validateName() {
+        const name = document.getElementById('Name').value;
+        if (name == "") {
+            errorName.innerHTML = 'Enter your name'
+            return false
+        }
+        if (!name.match(/^[a-zA-Z ]*$/)) {
+            errorName.innerHTML = 'Number are not allowed'
+            return false
+        }
+        errorName.innerHTML = null
+        return true
+    }
+
+    function validEmail() {
+        const email = document.getElementById('Email').value
+        if (email == "") {
+            errorEmail.innerHTML = "enter your email address"
+            return false
+        }
+        if (!email.match(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/)) {
+            errorEmail.innerHTML = 'enter a proper email address'
+            return false
+        }
+        errorEmail.innerHTML = null
+        return true
+    }
+
+    function validPassword() {
+        const psd = document.getElementById('password').value
+        if (psd == "") {
+            errorPassword.innerHTML = "enter a password"
+            return false
+        }
+        if (psd.length < 5) {
+			
+            errorPassword.innerHTML = "password should be more than five characters"
+            return false
+        }
+        errorPassword.innerHTML = null
+        return true
+    
+    }
+
+        function validcPassword() {
+        const cpsd = document.getElementById('cpassword').value
+        const psd = document.getElementById('password').value
+        if(psd != cpsd){
+            errorcPassword.innerHTML = "password not matching"
+            return false
+        }
+        if (cpsd == "") {
+            errorcPassword.innerHTML = "confirm your password"
+            return false
+        }
+        errorcPassword.innerHTML = null
+        return true
+    }    
+
+     function validPhonenumber() {
+        const mob = document.getElementById('phonenumber').value
+        if (mob == "") {
+            errorPhonenumber.innerHTML = "enter a phonenumber"
+            return false
+        }
+        if (mob.length < 10 && !mob.match(/^\d*$/)) {
+            errorPhonenumber.innerHTML = "Please Enter the valide phone number"
+            return false
+        }
+
+        if (mob.length > 10) {
+            errorPhonenumber.innerHTML = "Please Enter the valide phone number"
+            return false
+        }
+        errorPhonenumber.innerHTML = null
+        return true
+    }
+
+    function validation() {
+        if (!validateName() || !validEmail() || !validPassword() || !validcPassword() || validPhonenumber()) {
+            return false
+        }
+        return true
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

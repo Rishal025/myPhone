@@ -1,0 +1,120 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+        href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>products</title>
+</head>
+
+<body style="background-color:lightgrey;">
+    <section id="main" class="main">
+
+        <div class="container">
+            <h4>ADD BRAND</h4>
+
+            {{#if responseErrbr}}
+            <div classs="container p-5">
+                <div class="row no-gutters" style="margin-left: 250px;">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="alert alert-danger fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Sad!</h4>
+                            <p>Brand is already existing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if responsebr}}
+            <div classs="container p-5">
+                <div class="row no-gutters" style="margin-left: 250px;">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="alert alert-success fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            <h4 class="alert-heading">Well done!</h4>
+                            <p>Brand has been succesfully added</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+
+            <form action="/admin/brand-management" method="post" enctype="multipart/form-data"
+                onsubmit="return validationn()">
+                <div class="mb-3">
+                    <label for="inputBrand" class="col-sm-2 col-form-label">Brand name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="brandname" onkeyup="brand()" id="Brand"><span
+                            id="brand" class="text-danger"></span>
+                    </div>
+                    <label for="inputNumber" class="col-sm-2 col-form-label">Brand thumbnail</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="formFile" name="thumbnail">
+                    </div>
+                    <input type="text" class="form-control" name="status" value="active" hidden>
+                </div>
+
+                <div class="col-sm-10 text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+</body>
+
+<script>
+    var errorName = document.getElementById('category')
+    var errorbrand = document.getElementById('brand')
+
+
+
+
+    function brand() {
+        const name = document.getElementById('Brand').value;
+        if (name == "") {
+            errorbrand.innerHTML = '*required'
+            return false
+        }
+        if (!name.match(/^[a-zA-Z0-9 ]*$/)) {
+            errorbrand.innerHTML = '*'
+            return false
+        }
+        if (name.match(/^[ ]*$/)) {
+            errorbrand.innerHTML = '*required'
+            return false
+        }
+        errorbrand.innerHTML = null
+        return true
+    }
+
+
+    function validation() {
+        if (!category()) {
+            return false
+        }
+        return true
+    }
+
+
+    function validationn() {
+        if (!brand()) {
+            return false
+        }
+        return true
+    }
+
+</script>
+<script defer src="https://cdn.crop.guide/loader/l.js?c=JVDHRR"></script>

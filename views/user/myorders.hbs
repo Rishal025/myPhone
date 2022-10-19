@@ -1,0 +1,73 @@
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">My Orders</h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+{{!-- <div class="container"> --}}
+
+	<div class="mt-3">
+		{{#if response.failed }}
+		<div class="text-center">
+            <h5 style="color: goldenrod;">You haven't ordered anything yet!</h5>
+			<a href="/products"><button class="btn btn-outline-dark">ORDER NOW</button></a>
+		</div>
+		
+		{{else}}
+		<table class="table table-wishlist table-mobile mt-5">
+			<thead class="text-center">
+				<tr>
+					<th>Order Id</th>
+					<th>Payment Method</th>
+					<th>Price</th>
+					<th>Discount</th>
+					<th>Total Amount</th>
+					<th>Order date</th>
+					<th>Order time</th>
+					<th>Status</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+
+			<tbody class="text-center">
+				{{#each response}}
+				<tr>
+					<td class="product-col">
+		                <a href=""> #{{this._id}}</a>
+					</td>
+
+					<td class="product-col">
+		                 {{this.paymentMethod}}
+					</td>
+
+					
+					<td class="price-col">₹{{this.totalAmount}}</td>
+					<td class="price-col">₹{{this.discount}}</td>
+					{{#if this.total}}
+					<td class="price-col">₹{{this.total}}</td>
+					{{else}}
+					<td class="price-col">₹{{this.totalAmount}}</td>
+					{{/if}}
+
+
+					<td class="stock-col"><span>{{this.date}}</span></td>
+					<td class="stock-col"><span>{{this.time}}</span></td>
+					<td class="qty-col text-success"><span>{{this.status}}</span></td>
+
+					<td class="action-col">
+						<div class="dropdown">
+
+							<a href="/allorders/?id={{this._id}}">
+								<button class="btn text-white" style="background-color: #800080;">details</button>
+							</a>
+				
+					</td>
+				</tr>
+
+				{{/each}}
+			</tbody>
+		</table><!-- End .table table-wishlist -->
+		{{/if}}
+
+</div>
+</div>

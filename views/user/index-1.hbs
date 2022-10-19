@@ -1,0 +1,508 @@
+<body>
+    <div class="page-wrapper">
+
+
+        <main class="main">
+            <div class="intro-slide"
+                style="background-image: url(assets/images/demos/demo-2/slider/large.avif); background-size:contain;background-repeat: no-repeat; background-color: white;">
+                <div class="container intro-content">
+                    <a href="/products" class="btn btn-primary">
+                        <span>Shop Now</span>
+                        <i class="icon-long-arrow-right"></i>
+                    </a>
+                </div><!-- End .container intro-content -->
+            </div><!-- End .intro-slide -->
+            <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
+
+            <div class="container">
+                <h2 class="title text-center mb-4">Explore Popular Brands</h2><!-- End .title text-center -->
+                
+                <div class="cat-blocks-container">
+                    <div class="row">
+                        {{#each popularBrands}}
+                        <div class="col-6 col-sm-4 col-lg-2">
+                            <a href="/popular-brands/?bId={{this._id}}" class="cat-block">
+                                <figure>
+                                    <span>
+                                        <img src="/images/product/{{this.img}}" alt="Category image" style="width: 125px;height: 100px;border-radius: 10px;">
+                                    </span>
+                                </figure>
+
+                                <h5 class="cat-block-title ml-5">{{this.brandname}}</h5><!-- End .cat-block-title -->
+                            </a>
+                        </div><!-- End .col-sm-4 col-lg-2 -->
+                        {{/each}}
+                    </div><!-- End .row -->
+                </div><!-- End .cat-blocks-container -->
+            </div><!-- End .container -->
+            
+            <div class="banner-group mt-5">
+                <div class="container">
+                     <h2 class="title text-center mb-4 ">Premium Brands</h2><!-- End .title text-center -->
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div
+                                style="background-image:url('https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Ftc3VuZyUyMHBob25lfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); width: 100%;height: 300px; background-size: cover; background-repeat: no-repeat; border-radius: 10px;">
+                                <a href="/explore-samsung" class="btn btn-outline-gray banner-link ml-5 text-white"
+                                    style="margin-top:20px;">Shop Now<i class="icon-long-arrow-right"></i></a>
+                                <h5 class="text-white ml-3 mt-3">Explore the world of Samsung</h5>
+
+                            </div>
+
+                        </div><!-- End .col-lg-5 -->
+
+                        <div class="col-md-4">
+
+                            <div
+                                style="background-image:url('https://images.hdqwalls.com/wallpapers/one-plus-6-pc.jpg'); width: 100%;height: 300px; background-size: cover; background-repeat: no-repeat; border-radius: 10px;s">
+
+                                <a href="/explore-oneplus" class="btn btn-outline-gray banner-link ml-5 text-white"
+                                    style="margin-top:150px;">Explore Now<i class="icon-long-arrow-right"></i></a>
+                                <h5 class="text-white ml-5 mt-1">One plus generation</h5>
+                            </div>
+
+                        </div><!-- End .col-lg-5 -->
+
+                        <div class="col-md-4">
+
+                            <div
+                                style="background-image:url('https://c0.wallpaperflare.com/preview/471/747/721/space-black-apple-watch-over-black-iphone-x.jpg'); width: 100%;height: 300px; background-size: cover; background-repeat: no-repeat; border-radius: 10px;">
+                                <a href="/explore-Apple" class="btn btn-outline-gray banner-link text-white"
+                                    style="margin-top:150px; margin-left: 100px;">Move on<i
+                                        class="icon-long-arrow-right"></i></a>
+                            </div>
+
+                        </div><!-- End .col-lg-5 -->
+
+
+
+                        {{!-- <div class="col-md-6 col-lg-4">
+                            <div class="banner banner-overlay">
+                                <a href="#">
+                                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBUQEBAVFRUQFRAPFRUPFxAQFRAVFRUWFxUVFRUYHSggGBolGxUVITEhJSorLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGi0lHx0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBFAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAAAgEDBAUGB//EAE0QAAEDAgIECAgLAwwDAQAAAAEAAgMEERIhBTFBUQYTIiNhcYGRMkJScqGxstEUM3N0gpKis8Hh8GJj0hUWJCU1Q1Nkg5OjwjRU8Qf/xAAbAQACAwEBAQAAAAAAAAAAAAAAAQIDBAUGB//EADsRAAIBAgMFBQYEAwkAAAAAAAABAgMRBBIhMUFRYXEFgZGhwRMiMrHR8BRScuEGIzNCYnOSorLC0uL/2gAMAwEAAhEDEQA/APiIThImWpASRZClpQ5lsxq9SdgISpkJ2AFIUIQA4ThVtTgqQibJrIaE4H6ClYBUwQGnce4psHQUhigJgpt+rKQ07Ae4pDQhUEJyw7j3FGE7j3FLQkVWUWVjrjYR13CrxDeloMhRZTiCjEEroLAoITXChMdhbKLJ7KEBYWylTZRZAWFRZMhAhbIshCBWIQmsosgCEIUJ2EKgITKDIgnY5IpCkmDHfHtGr1JFbE+yaWHLE3VtHk/kp5d6I34lNkE6ujLrzJz36/UoBTJWGQFIUWQDZSXMRppoXSPbG0Xc8hoA2kr6NUaOi0aRGyON8lsTpJmNlsc/i2uyaOm189exeI4JAHSFIP8AM0/3jV9F084Or2BwBBiub56oXEHrBAPWAtuEyJzqSjmUIuVuiuYsXmk4QTtmdjJ/LMrWhx+D53sOKpdl72GHMixuBmLG4Flop9NuOuOE/wChB/CvG8Iq9gdIC5we3JjWiwGrDnbJrbAjPYBbO46LpcLyBqBIHULgK3s6usRKUKkIaaq0bdVrflYzYzC+zgpQlLhtf7HspdJhsZkMUFmAuPMU+wX3LxtbVVdU9/NsAhxYmRNYxsdjZ3JYBiIORPQuhDV3YWHU4W+0FzKkvFRM2Muu6aoFo8V3c48nIa9qp7SgoVIwirK19NN/IXZsHllKbbd7K7vp3/MwWfvb3P8A4khx729zv4lpETsOINOHyrG3fqShhIJAJDbXIBIbc2FzszWNQvvfi/qdG/IzScZa4INtlnZ+lURzPcbNc05Ak8rkndr1rbZFlL2F2tX4v6ic7bjPhl8tv1Xe9WxU8zr8tuVvFdmTk1o5Wsn1FWtbc2AuTYADMk7AFqkAa3CDfDe5GYLjkXDePFH0jtWyOEppXlfxl9Sp1JXUY7XyRP8ANnSLsYZAZOJNn4Y3uDDhDsyCdhv2rzVTAcIkDQ0XLCG5gEW1djmn6QXb+FSNBDZHjHrDXOAd51jnlvVVbHajcba5TYnaCyD3DuXLqStOy9fVs6MaTjBS5rz6Hn7KFZZFlMusVIT2RZOwWK0WVllFkWFYVLZNZFkCsIhMosmQaIQhCQFITpAnVSKwQhCmAzSroJbFUBS0q2DsyEtTVUU2WNmraPJ6R0epZQtdLOWlW1VICOMjGWtzfJ6R0erq1XSpZlmj3r6fTd02QUrO0jGFBalBVgKglcmdPgeP6xpPnNP941e54Stc+sDWAlzqZzWgay40r7Adtl4rgiP6xpPnNP8AeBes4VvLaq4JBFJKQRkQRSSEEHYVZBZaOI/wpGeor1aX6keS0za7nScWXxYGOZdry44QM3M2hwJIJ6rWXQqZOdf57vaK4JLCywwi7RfO7nOsATv1hxtq1W6epWP55/nP9oqPZU8tZ9PVEsVG9PvXqdGkm5QG/D6wunA2R0la2DHxruODBEXCR1qyMuDMOfggk22AnUCuDo9/OM62+tdaTiePm45jnAyz2wkNseNdnnr6lo7ReatH9PqUYeOWD6+hv0tVkCrwSksnqZYY2te7BgbJx0j2tBw5u4gA7Q5/SrNGHk3jJ4lkmkDKG4wwMfTRti41pJ5JIeG4r3NwM1zA+mBHNSEWIN3i97i2oDVn3qmbiS0YWODwGgkkYb+MQNefWs0aF1b72WLXPedDT9K1sceEPAi4uCMuc1zKlha6SSoiAAIGM55u+MaLgtIXCsnwgfiujR6PcXAYbvOph1N/akv7J7bDI7qVHKtSmpOxngiLRfx3DK3iNPjecRq3C53KuqtqGpvpXUrGthBF7uN8TjtO38/fk1aJrIWiqnAOsxRnxiB8Y4bhlYfkqcdXVOnxb2Li+H3sNHZtGVeba2b3wX34nP8AggYMc2QFi4beiMdJ27lk0hUOkpHudleawA1NaI4bAdCtrnPkHHSZN/u2nxr7f16lmkzo3fOD7EK4sFeV5bflyXqd3GNKMYQVo3XV836Lg27aq3GsoLVfgSlq2FeUpLVFlfZIQkGUqspsrCElkEcolkEJrKCEyDiV2RZPZKQgg0KhSpTI2MoTpQmVKKQQhCmgJUhQEKSEO0rbSVBabhYUzSr6c3F3RXKOZHRqqIOBkiHS5g2b3MG7o/Q5rSuhTVOEgtJ2Xvln0WOYVtZRiQGSIcrW5g29LBv6FfKmpLPDvXqvVeHApU3D3ZbOP1+pfwNF9IUvRPTn/lYPxXouGUmGpudtOI99hJAYybbbY726F53gUf6wpvl6b7+Neh4dt58fJQ+w1SwcFV9rCWxwafe0QxEnGcHwfozjz0rPgMUZo3MkZK5760G8csbsXJGxzs2gNGeS50s+JznasTnOtuuSfxV9VTsETHBoxEAudd1zy5BqvbU1u7V1k88FZcJQ/Dyk27tt8t/V+i4JF1WWZJWOlo13Os62+tdusHOy/Kz/AHjlwNFO51nW31r3FJPSNkk+EGc85PYQuaAOcfvIV9Vp1U9vu7uqK4r3bXS13uy2dGcNtM86mOPUCtNPouR5wjWdjOcceprL+my9pSV+iMsNI5xG2okcc+ppf6l6Oi0/ExtooWRg6sIawHqJzd9VSdaUFpB99l9SCySllU7v+6m/N/Q8rorgNI1vGTcw0eNJZ0p8xgNmHtLtxVelaiCkjLIhbYb+G4/tH8Bn5tzf11ZT1dTcjkNtm+a8TQO3lnq5IK8rpfRUMY5smZ+oyuFo2dEY1es9KyPHxTs3d8Fs72a6PZVTEyyr3Y73tffbRcl4ninVQxGSRuK3gx6g47MW5o3LfT0LS01le/I/FxeNKdmWxg/XTVUUBF5HWa3yn5X6Bv7FypJnVMoAxyHU1rQS54G4DwQs+JvV1Uur3pcE9i5vhv2HZpUo4aORrf7q4v8AM97S3btyu2PM59U8vJDWC/K1BgGwIlbG6ncI74RI4gnx8MUZv22VlUI4hhkIkeMhDEcUcZ2cY4eG79kZJoXvmicHAYjJI2w2AQsyVMKbjZ293d4PvfXwuRxNWEkle83JX0+0umre+2w43FZKp0a7kmjngeCVjlpSNYWlF7g0cssSFq3Pi6FQ5iZDKZ8F79GaghWuakIQQcSohKQrCEpCZW0IlITlKUFbQtkJkIIWMaEICpMwyEICkBKlQhTExkBAQFNEWWtO33ersWqnqC03usYTNWinJp3RXJJnqdAuZJpGnla0Mc6oprtZfCeejOVyTfI7Vv4bTD4QAf8ACh+7auHwRzr6XoqKc/8AKwfiuhw6d/SB8lD921asPPLUqSS/s/8AJGOrDWMeb+TOS+5Ftg1aun3lZpIdySGpLTvC6cTWvF29o3K+EaddWW3gEnKG0y6HYTOzocD6V7am0hQh0gqDU4xNUAiAU4ZbjX2zcL6rLzFFBhlaekD0hezoNGxOc93wB0pMs5LhJNZx41+eFosFxe0oujNJtrTaml5s6nZ0JV8ygk+N9m7oamy08gAgZNb968X7mZL01BoRsTBNNVRxggOszN3UdWfeqaepqWsDIqDA3UA4VTh6wsstHUPN38THfZeGP2jdcadZSVnOy5tNnpoU5RioxSjz927+Z1azhNRNyaJ6kjIGT4sW3NNge5eT4RcL5H/FwNFshxguG9UYy7yV3qeooaZpNQBI/rL2jsAsvPcIOEdHLyeJ5A8VhbED1kXV+Go0nL3YNrj92XmZMQ5007Oz4t28vpFHiqmp45+Oqme47GR2Lj0C/JYO/qXUpKOeWMgFlFTnwy4nHL0OJ5Uh6OSM9Swz6TJdanhZCP3beNf2vdclZy2VxxPYXHfKSB3LqvD1pJZIeNnbovhXV3sciOIw8W88+rV1fq9ZPp7p3XCjiZxVGxz32OOUjlHobfKNttpt2o0Jh41uTLCV9ww4gLwsGZ8Y3I1LhSxyOFpJG4R4rMmjsFgroZTBCXxWJZI53Lvnzcd9XQFVVwNalH2lSW3nfanv9LKwPtDD1stKlFpJp32b9iWvHbm1tqfWpW05aLsGpcer0fTu8XuXghw3eQA6EjeWyX+yW/ilPC8HZIOxp/7KiMWjt0sVSirZn339T0tXoKI+CVxqvg8R4JusJ4Ut8p3aCj+c7fKPc73K25p/E4SXxGSp0c9usLBJEQu07hLGdZJ7Csk+lqd392/sAH4qSZTOGGl8FRd5yiFWVpmlYfBB7bBZXk7kzn1ElsdyCkKVxKiyVyhyHuoS2QmQ1MpUhQpCoRmGQhCkgJQEBMApoQAJgFDQrWhXRRFkNCsYxNFGSujBSgZuWqnTbKJzUTTwSbavpr7Z6YD/AHmH8Fdw6P8ASB8lD7DVZwfkb8OpAP8A2af7xq0f/oNHz4I2wwn7DVbSg3KpGP5fVFLldxb4+h4vEtNNUFhu0rI8EHNS1yxQm4y4NGmUU0er0fVNksdThhy35jUunJMGveBUyt52a7WOkaBzjsrAryWh3c8zpcF7qmqqcPeH0jHkSTAlzwMR4x2eepXYi+LqxvtUeXHn1IUKqwcJNJNN7218vXQwkQO8KZ584vK00lOXZR1TWD95JIz1Be10bpulIA/kuDIAXHEuOS79LWULxd+jmN+g0/8AVLJOnHWH+x+Qn23hZTy5rPlnj53Z8sqND+VUQO63vf8Agt2gtH0LX/0l0J8wO9a+iTwaJdm6naz6OH3LLLobRLhdgZ1YCPTqVirNxyvMuail8jLUx2GjPOoQl+qpfykjy2m6Sgls2mnZDYm5zNxbIcpwXLZwbpj4WkGnqEY9chXu2cGNFyN8Ft89pb7gudUcDaTW027CfTmp0q2VZFUkrcYpvx1FV7QoS/mOhF3/ACza8lY8dWaIpIhyZTIeiSBo9RXntIyNbTyWGEY3tFiH5mOMDMda+hTcEIvFN+qy8Rw0oBA10eoYmOzz1sj3KGNknStmu77+jDCY2niK+SFPJpz4reeM4x3lFGI702EeV61GEbx6VzTv2fHzFxFF1Zg6R6FIiKLEsshOxATYDuRZFhpEtV7TvVICkG21SLINo0iNpSvpSqhP0JhVbimmi3NSe0Ti0J+N6EI0IZYHLUgIClUHNJQhSFJAATpQrGtU0ANC0xRb1SCAgyrRFpbStps3iYN1Kt1SSsYJKuiYrlVb0RU4JanV4LEnSFIf8zT/AHjV3+GkwdM35KEfYauNwYbaupfnFP8AeNT8LJ8NR0YIvYC14NqFWUpcF5srnHOlY5k0LXawsUtIRqzWt78rhZfhZBV2LhQf9TS+8lDMthZoY8/GP2gvomiOEAgfI00zJOdm5Rtcc47eCvCaNcx8rHDWHBe60SKqJzpI2SBpkmIcGki3GO1Gy4mNf4drVSTWmrV9VvR0ez6Pt6ttluSfz037dx6mDhhTZXom7shD/CuhTcJ6B3hUrm9Nhb7Nlx6LTznyNZVOGC4DsTGXA+rdeifoLR9QOZmYCdRDmB3osVzo9oxhpODX6Zt/NI6OL7Lp6e0t1yZl3vT5D/CNGyjm5MB6S9vrusE1Jta4OG8gO73N1doCx1/A2qjPIcJG9ReQOo8o9hXLq6GrpRxgvhHjRkyMG+/jM7R2rqYXG0Ju0amr3S+p5nH/AMOqcc9FR6w9Yqzvy/c62Egbbb74gq8xqN+rI9y5tDwoaXDjxmcsbLWPUdTu2/YvdDg/DUQiWneLkXu2xa7rA1dmS6FWsqNvaaX37UeUXY9apm9mk8vc+76Hl+PcNp7fzXhuHZD3HFtMeq48Ri9/XU0sJwSt1do6wV8/4aWxG9wLs1ZnwGdKpxmWVJNcfRmr+H4yjjsslsT0fWJ5hlDBbxhfpH4hN/JUJ1PkH1X/AIhK16cSrn2PpsfYtawXhb5WfmUv0OfFlafOa5nqus79HSt8QHzXNP5roccjjkrDlQw8tia6P/tmOQ+R7ddx13HrUccdq7BmKzyU8Z8W3m5fklYzzw0l8E/H7ZzeMCO1XvofJdfry9KyvjI1j9daDHOM4fEiSoui6LpFbZOLpQlshBERCEKJWCkBACa6kgAJi5ISgJ3Am6ZoUNCtapIQzGrRGqS4DM5dGsqt85OQyHp7Sr41FErcbnoODkjRpCkbfP4TT5DZzjdaq4Ym8/0IvYCy8ECP5RpPnNP94FdwtPP/AEI/ZC0UKmZVG+C+YslrHIpajCbHUVbW0/jt1FYzmtujagfFv1H0dKlh6kai/D1Xo/hfBjkraoXQ55+Pzgvpuj9NV7Lsha0tD5Q28kQy4x28r5zS05jqWecF6GCWmEsnHiS3Gy5x8Wf7x3lBYamFg6jp14p2vpZPhqWwqzj8Dtfe7W80z2b9H6Sm5bqUuvnzT4HHuD1max0LrVEcsW8yMc0fX/NUUlfoltsFVK0/vIw6x/0Q0+lel0ZpgSDBDWskvqY84CeqOS5+0oywdCUfdVl0cfPVeRrh2xjqUkmlJcnGXlGzO/osOdEJKSrx5XMcjsbb7RvaubpnTTmutIwxSAdIbIOvaOu659WBG/GIjBJ5dNdt+kx6nfRusel9OCeHBNhdbNsjL2PWPFK5NTs2pRkpxWaPmvDRrz5I34LHUa9T3rX56Pxssy6pbrN7uXpCOCquYsMU2ss1RSnq8U/rNZeDnCepoJC1pIDTy4nG/aN46lwayaz9erUfetOlad7omTg32Ejwmnp3jP8AWs93CV4xgqc/ehLc9z5P67NzMHaWDVWU6tJZZw3retmvPnrdaO59Ir+E0Na5r2chwbZwda19x2bdffZfPOHuRflbOPV5rVgoa4312cO53V7knCKpMkZcdha3uaxacXThChHI9L+kjzGDozXaEqs9rTv/AKV6HFD0B6oDkF65x6lVC/GgvVOJRiQWe0L8ajjFTiRiQP2pcXoL1TiUYkCdRhJG09HV7lQ+Mjp6lbdRiUbIplGLKLqFdluQlYqyPiU2QouhRKQuhCkIAgBWAJU17JgSFJk3d6qc5KSjMAxd2qLpQmRe4HX4If2jSfOaf7xqv4WHn/ox+yFTwP8A7RpPnNP7bU/Cr476LPZC3Yb+lU7iLNmkIKdtBGQ2IPcyB7SDz73l0wmxtviwWa2xIDchY5m/mOkL0elAYqGODGyTlcZd8sbzHyni1NGM2xuyLnX5RAyFs/OMK5mFlo4t7W7Emd/RcolwE+FG5vaL2S1k7hLIAT8bNtP+I5YNDvInYNhICvrzz0vys3tuXQxOJdSUJP4kmn3NfNFbirD/AAl2+/Xn60cd2dWXo1LJiRiSjXe8g4I9Jo/hNUxjBjMjDYYJOX1AXzvutq2Bbq2oMjbujfG53lhwv2nwvaHSuLwUqWMqAX+S4M1Dl3GolzQ3k4hiLgG3JNwMJ9hpmotTSukNrtIAcWuIf4jWni43XuAeUy2pwcQM7o4lRla23x++uvMhKlm1ueHqXEGx9/cujobSxYOKfmw6r5gX1g9BXPMgkbnrGf5rM3yT2HcdyqxNFbVsZrwmKqQkmnqtOvJm3SUOF2Jmq/a0qqqmL6ZxOvjAOvkxqBMcJY7WN6Sb/wAZ3yv/AFjUZyfskm9/owqKDq54q193Dic4H8kYkt1F1nLEx8SMSS6i6B5i3Elukui6B5h7qLpbougWcm6m6RQgMw6Et0II3EUqFKiVkKUpcoui4DFyW6hCQAhCkIAZCEKQHX4If2jSfOaf7xqs4U/HfRZ7IVfBE20hSfOaf22p+FHxx6meyFtw39Kr3CZln0gDTMgGJ2E48UtrRG7rshGtrTcE55nYLXPMBSuQuSoqN7cSTdzoaIPPR+cFdpA89L8rN7bll0QeeZ5wWyZrHTzBzg275cJdfCHcZ41gTbDi7bK9zzWfX0IsyEqMSV3XfZlqPSEpKknYiWBys44mwJJtkLkm3VuWa6YOU4ztsE0bon2z7/enq2gatuayRPstkng5avCb0Dxm9hPcVujJSj9/f79SpqzLWjjWFw8KIDF+024Ad3kXVczv6M75X8I1ZotsNnuklLCBZoBAxgg3ByN9QyVMkmKmd8p32EYv6lhndPLu1+TNbkpxUt+/6nORdKouogMhKSi6QxkJVF0AWbL37M79e7/6kuouhFwJuouoUoESoRdQgCcSUlQhRIghCEACEKQgACZCEwBCEIAtpp3RvbIw2dG5r2ncWm4XY0g01shkiLLuzLXvZGWk52GIi4GrsXEY25AG0gLRLzZs23WQDfvV9Go43W1PaBqPBmq8mP8A3qf+NR/Nmq8mP/ep/wCNYvhT94+qz3I+FP3j6rfco/yPyv8AzfsBvj4PVTSHBseRB+Op/wCNTXaHmDi9xaC8l3hNfmczmwnasDah5Nrj6rfcmlnN7ZG2Wq3qUZexy2UWu/8A89AHOjpPKH2/coOjZPKH2/cquNduHp96XjXbh6feqci5+P7AXHR0g8Yfb9yX4C/yh3v9yr4524en3o4124en3oyrn4/sBb8Ak8tve73JhTS2txgtmdb9uR2KnjXbh3FGN3kjuPvTy8HLx/YVkWGhfte3vd7lD3hrOKDr54iRqvuG/UO4Ksyu8kdxQ4XGIC2dihLXf3jEUIQpjuCEIQFyFKEJBcEIQgLglQoSEShQpQAKEISAEIQmABMhCaAFKEIAhCEJAaKAc6zzm+tPW+F2D1IQrYbGBlKhCFUBbTjlDrV5Ni6+ebiAdV77ewIQmJlRCWyEKQgsgBCEAO0Kw6vQhCmiI0OHMEXvq6FW5tmHr9yEKuW0tS0M6hCEhAhCEACEIQApUIQkAIQhAAhCEAf/2Q=="
+                                        alt="Banner">
+                                </a>
+
+                                <div class="banner-content banner-content-top">
+                                    <h4 class="banner-subtitle text-grey">New Arrivals</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title text-white">Storage <br>Boxes & Baskets</h3>
+                                    <!-- End .banner-title -->
+                                    <a href="#" class="btn btn-outline-white banner-link">Discover Now<i
+                                            class="icon-long-arrow-right"></i></a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+
+                            <div class="banner banner-overlay banner-overlay-light">
+                                <a href="#">
+                                    <img src="assets/images/demos/demo-2/banners/banner-4.jpg" alt="Banner">
+                                </a>
+
+                                <div class="banner-content banner-content-top">
+                                    <h4 class="banner-subtitle">On Sale</h4><!-- End .banner-subtitle -->
+                                    <h3 class="banner-title">Lamps Offer</h3><!-- End .banner-title -->
+                                    <div class="banner-text">up to 30% off</div><!-- End .banner-text -->
+                                    <a href="#" class="btn btn-outline-gray banner-link">Shop Now<i
+                                            class="icon-long-arrow-right"></i></a>
+                                </div><!-- End .banner-content -->
+                            </div><!-- End .banner -->
+                        </div><!-- End .col-lg-4 --> --}}
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .banner-group -->
+
+            <div class="mb-3"></div><!-- End .mb-6 -->
+
+            <div class="container">
+                <ul class="nav nav-pills nav-border-anim nav-big justify-content-center mb-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="products-featured-link" data-toggle="tab"
+                            href="#products-featured-tab" role="tab" aria-controls="products-featured-tab"
+                            aria-selected="true">Featured</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="products-sale-link" data-toggle="tab" href="#products-sale-tab"
+                            role="tab" aria-controls="products-sale-tab" aria-selected="false">On Sale</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="products-top-link" data-toggle="tab" href="#products-top-tab" role="tab"
+                            aria-controls="products-top-tab" aria-selected="false">Top Rated</a>
+                    </li>
+                </ul>
+            </div><!-- End .container -->
+
+            <div class="container-fluid">
+                <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 fade show active" id="products-featured-tab" role="tabpanel"
+                        aria-labelledby="products-featured-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                            data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":5
+                                    },
+                                    "1600": {
+                                        "items":6,
+                                        "nav": true
+                                    }
+                                }
+                            }'>
+                            {{#each products}}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-circle label-new">New</span>
+                                    <an href="/product-view/{{this._id}}">
+                                        <img src="/images/product/{{this.img.[3]}}"
+                                            alt="Product image" class="product-image">
+                                        <img src="/images/product/{{this.img.[1]}}"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="/product-view/{{this._id}}">{{this.productname}}</a></h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rs.{{this.price}}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <button class="btn btn-outline-dark" onclick="moveToWishlist('{{this._id}}')"><span>MOVE TO WISHLIST</span></button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                         {{/each}}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel"
+                        aria-labelledby="products-sale-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                            data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":5
+                                    },
+                                    "1600": {
+                                        "items":6,
+                                        "nav": true
+                                    }
+                                }
+                            }'>
+                            {{#each products}}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <a href="/product-view/{{this._id}}">
+                                        <img src="/images/product/{{this.img.[3]}}"
+                                            alt="Product image" class="product-image">
+                                        <img src="/images/product/{{this.img.[1]}}"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="/product-view/{{this._id}}">{{this.productname}}</a></h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rs.{{this.price}}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                     <button class="btn btn-outline-dark" onclick="moveToWishlist('{{this._id}}')"><span>MOVE TO WISHLIST</span></button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                            {{/each}}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane p-0 fade" id="products-top-tab" role="tabpanel"
+                        aria-labelledby="products-top-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
+                            data-toggle="owl" data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":5
+                                    },
+                                    "1600": {
+                                        "items":6,
+                                        "nav": true
+                                    }
+                                }
+                            }'>
+                            
+
+                             {{#each products}}
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                    <a href="/product-view/{{this._id}}">
+                                        <img src="/images/product/{{this.img.[3]}}"
+                                            alt="Product image" class="product-image">
+                                        <img src="/images/product/{{this.img.[1]}}"
+                                            alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="/product-view/{{this._id}}">{{this.productname}}</a></h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        Rs.{{this.price}}
+                                    </div><!-- End .product-price -->
+
+                                    
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <button class="btn btn-outline-dark" onclick="moveToWishlist('{{this._id}}')"><span>MOVE TO WISHLIST</span></button>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product -->
+                            {{/each}}
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .container-fluid -->
+
+            <div class="mb-5"></div><!-- End .mb-5 -->
+
+            <div class="bg-light deal-container pt-5 pb-3 mb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="deal">
+                                <div class="deal-content">
+                                    <h4>Limited Quantities</h4>
+                                    <h2>Deal of the Day</h2>
+
+                                    <h3 class="product-title"><a href="product.html">APPLE IPHONE 14 PRO MAX</a></h3>
+                                    <!-- End .product-title -->
+
+                                    <div class="product-price">
+                                        <span class="new-price">Rs.70,999</span>
+                                        <span class="old-price">Was Rs.90,999</span>
+                                    </div><!-- End .product-price -->
+
+                                    <div class="deal-countdown" data-until="+10h"></div><!-- End .deal-countdown -->
+
+                                    <a href="" class="btn btn-primary">
+                                        <span>Shop Now</span><i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .deal-content -->
+                                <div class="deal-image">
+                                    <a href="product.html">
+                                        <img src="https://media.wired.com/photos/632119a7f1e5c40d2b1bc647/master/pass/iPhone-14-Pro-Review-Gear.jpg" alt="image">
+                                    </a>
+                                </div><!-- End .deal-image -->
+                            </div><!-- End .deal -->
+                        </div><!-- End .col-lg-9 -->
+
+                        
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .bg-light -->
+
+            <div class="container">
+                <hr class="mt-1 mb-6">
+            </div><!-- End .container -->
+
+            <div class="blog-posts">
+                <div class="container">
+                    <h2 class="title text-center">From Our Blog</h2><!-- End .title-lg text-center -->
+
+                    <div class="owl-carousel owl-simple carousel-with-shadow" data-toggle="owl" data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "items": 3,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "600": {
+                                    "items":2
+                                },
+                                "992": {
+                                    "items":3
+                                }
+                            }
+                        }'>
+                        <article class="entry entry-display">
+                            <figure class="entry-media">
+                                <a href="single.html">
+                                    <img src="assets/images/demos/demo-2/blog/post-1.jpg" alt="image desc">
+                                </a>
+                            </figure><!-- End .entry-media -->
+
+                            <div class="entry-body text-center">
+                                <div class="entry-meta">
+                                    <a href="#">Nov 22, 2018</a>, 0 Comments
+                                </div><!-- End .entry-meta -->
+
+                                <h3 class="entry-title">
+                                    <a href="single.html">Books changing lives.</a>
+                                </h3><!-- End .entry-title -->
+
+                                <div class="entry-content">
+                                    <a href="single.html" class="read-more">Continue Reading</a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+
+                        <article class="entry entry-display">
+                            <figure class="entry-media">
+                                <a href="">
+                                    <img src="assets/images/demos/demo-2/blog/post-2.jpg" alt="image desc">
+                                </a>
+                            </figure><!-- End .entry-media -->
+
+                            <div class="entry-body text-center">
+                                <div class="entry-meta">
+                                    <a href="">Dec 12, 2018</a>, 0 Comments
+                                </div><!-- End .entry-meta -->
+
+                                <h3 class="entry-title">
+                                    <a href="">My journey to success.</a>
+                                </h3><!-- End .entry-title -->
+
+                                <div class="entry-content">
+                                    <a href="" class="read-more">Continue Reading</a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+
+                        <article class="entry entry-display">
+                            <figure class="entry-media">
+                                <a href="">
+                                    <img src="assets/images/demos/demo-2/blog/post-3.jpg" alt="image desc">
+                                </a>
+                            </figure><!-- End .entry-media -->
+
+                            <div class="entry-body text-center">
+                                <div class="entry-meta">
+                                    <a href="">Dec 19, 2018</a>, 2 Comments
+                                </div><!-- End .entry-meta -->
+
+                                <h3 class="entry-title">
+                                    <a href="">Quisque volutpat mattis eros.</a>
+                                </h3><!-- End .entry-title -->
+
+                                <div class="entry-content">
+                                    <a href="" class="read-more">Continue Reading</a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                    </div><!-- End .owl-carousel -->
+
+                    <div class="more-container text-center mt-2">
+                        <a href="" class="btn btn-outline-darker btn-more"><span>View more articles</span><i
+                                class="icon-long-arrow-right"></i></a>
+                    </div><!-- End .more-container -->
+                </div><!-- End .container -->
+            </div><!-- End .blog-posts -->
+        </main><!-- End .main -->
+
+        <footer class="footer footer-2 mt-5">
+            <div class="icon-boxes-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="icon-box icon-box-side">
+                                <span class="icon-box-icon text-dark">
+                                    <i class="icon-rocket"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <h3 class="icon-box-title">Free Shipping</h3><!-- End .icon-box-title -->
+                                    <p>orders $50 or more</p>
+                                </div><!-- End .icon-box-content -->
+                            </div><!-- End .icon-box -->
+                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="icon-box icon-box-side">
+                                <span class="icon-box-icon text-dark">
+                                    <i class="icon-rotate-left"></i>
+                                </span>
+
+                                <div class="icon-box-content">
+                                    <h3 class="icon-box-title">Free Returns</h3><!-- End .icon-box-title -->
+                                    <p>within 30 days</p>
+                                </div><!-- End .icon-box-content -->
+                            </div><!-- End .icon-box -->
+                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="icon-box icon-box-side">
+                                <span class="icon-box-icon text-dark">
+                                    <i class="icon-info-circle"></i>
+                                </span>
+
+                                <div class="icon-box-content">
+                                    <h3 class="icon-box-title">Get 20% Off 1 Item</h3><!-- End .icon-box-title -->
+                                    <p>When you sign up</p>
+                                </div><!-- End .icon-box-content -->
+                            </div><!-- End .icon-box -->
+                        </div><!-- End .col-sm-6 col-lg-3 -->
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="icon-box icon-box-side">
+                                <span class="icon-box-icon text-dark">
+                                    <i class="icon-life-ring"></i>
+                                </span>
+
+                                <div class="icon-box-content">
+                                    <h3 class="icon-box-title">We Support</h3><!-- End .icon-box-title -->
+                                    <p>24/7 amazing services</p>
+                                </div><!-- End .icon-box-content -->
+                            </div><!-- End .icon-box -->
+                        </div><!-- End .col-sm-6 col-lg-3 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .icon-boxes-container -->
+</body>

@@ -1,0 +1,84 @@
+<main id="main" class="main">
+          <div class="card">
+            <div class="card-body">
+              <h5 class=" text-center my-center mt-3"><u>Manage brand offer</u></h5>
+
+              <!-- Bordered Tabs Justified -->
+              <ul class="nav nav-tabs nav-tabs-bordered d-flex mt-5" id="borderedTabJustified" role="tablist">
+                <li class="nav-item flex-fill" role="presentation">
+                  <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">View offers</button>
+                </li>
+                <li class="nav-item flex-fill" role="presentation">
+                  <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Add offers</button>
+                </li>
+               
+              </ul>
+              <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+                <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="home-tab">
+                    <table class="table table-hover" id="myTable">
+                    <thead>
+                    <tr>
+                        {{!-- <th scope="col">No</th> --}}
+                        <th scope="col">Brand</th>
+                        <th scope="col">Discount</th>
+                         <th scope="col">Expire date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                  {{#each brandOffer}}
+                    <tr>
+                       
+                        <td>{{this.brandname}}</td>
+                        <td>{{this.discount}}</td>
+                        <td>{{this.expireDate}}</td>    
+                        <td><button class="btn btn-outline-danger text-uppercase" onclick="removeBrandOffer('{{this._id}}')">
+                               Delete
+                            </button>
+                        </td>
+
+                  {{/each}}
+                    </tbody>
+                </table>
+                </div>
+                <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="col-md-6 ">
+                        <div class="card">
+                            <div class="card-body">
+                            
+
+                            <!-- Vertical Form -->
+                            <form class="row g-3 mt-5" method="post" action="/admin/add-brandOffer">
+                                <div class="col-12 ">
+                                <label for="inputNanme4" class="form-label">Select brand</label>
+                               <select class="form-select" name="brand">
+                                    <option value="" disabled selected>Select brand</option>
+                                    {{#each brand}}
+                                    <option value="{{this._id}}">{{this.brandname}}</option>
+                                    {{/each}}
+                                </select>
+                                </div>
+                                <div class="col-12">
+                                <label for="inputPassword4" class="form-label">Discount</label>
+                                <input type="tel" name="discount" class="form-control" id="inputPassword4">
+                                </div>
+                                <div class="col-12">
+                                <label for="inputAddress" class="form-label">Date</label>
+                                <input type="date" name="expiredate" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                </div>
+                                <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </form><!-- Vertical Form -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+              </div><!-- End Bordered Tabs Justified -->
+
+            </div>
+          </div>
+    </main>

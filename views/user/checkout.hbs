@@ -1,0 +1,297 @@
+ <style>
+
+.hover-div {
+    border-top: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 10px 0px;
+}
+.hover-div {
+    border-top: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 10px 0px;
+}
+
+.hover-div:hover {
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.32);
+    cursor: pointer;
+    border-radius: 5px;
+}
+ </style>
+
+<body>
+    <div class="page-wrapper">
+
+
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Checkout<span style="color:#800080; !">Shop</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+
+
+            <div class="page-content">
+                <div class="checkout">
+                    <div class="container mt-2">
+                        <div class="checkout-discount">
+                        </div><!-- End .checkout-discount -->
+                        <form id="form">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                        <h2 class="checkout-title">Billing Address</h2><!-- End .checkout-title -->
+                                         <div class="col-12 col-md-12">
+                                             <div class="product-body hover-div"  onclick="addressPass('{{this._id.name}}','{{this._id.address}}','{{this._id.mobile}}')">
+                                                 <p style="font-weight:bold;">{{details.userAddress.name}}</p> 
+                                                 <p>{{details.userAddress.mobile}} | {{details.userAddress.email}}</p> 
+                                                 <p>{{details.userAddress.address}},{{details.userAddress.street}},{{details.userAddress.town}},{{details.userAddress.state}},{{details.userAddress.country}}</p> 
+                                                 <p>{{details.userAddress.pincode}}</p>
+                                             </div><!-- End .product-body -->
+                                         </div>  
+                                </div><!-- End .col-lg-9 -->
+
+                                 <input type="text" class="form-control" name="fname" value="{{details.userAddress.name}}" hidden>
+                                        <input type="text" class="form-control" name="country" value="{{details.userAddress.country}}" hidden>
+
+                                        <input type="text" class="form-control"
+                                            placeholder="House number and Street name" name="streetAddress1" value="{{details.userAddress.street}}" hidden>
+                                        <input type="text" class="form-control"
+                                            placeholder="Appartments, suite, unit etc ..." name="streetAddress2" value="{{details.userAddress.address}}"
+                                            hidden>
+
+                        
+                                               
+                                                <input type="text" class="form-control" name="town" value="{{details.userAddress.town}}" hidden>
+                                           
+                                                
+                                                <input type="text" class="form-control" name="state" value="{{details.userAddress.state}}" hidden>
+                                           
+
+                                        
+                                                
+                                                <input type="text" class="form-control" name="pin" value="{{details.userAddress.pincode}}" hidden>
+                                            
+                                                <input type="tel" class="form-control" name="phone" value="{{details.userAddress.mobile}}" hidden>
+                                           
+                                         <input type="email" class="form-control" name="email" value="{{details.userAddress.email}}" hidden>
+                                         <input type="text" name="user" value="{{user._id}}" hidden> 
+                               
+                                 
+                                <aside class="col-lg-4">
+                                    <div class="summary">
+                                        <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                                        <table class="table table-summary">
+                                            <thead>
+
+                                                <tr>
+
+                                                    <th>Product</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {{#each response}}
+                                                <tr>
+                                                    <td><a href="#">{{this.product.productname}} ({{this.quantity}})</a>
+                                                    </td>
+                                                    <td>{{this.total}}</td>
+                                                </tr>
+                                                {{/each}}
+                                                {{!-- <tr>
+                                                    <td><a href="#">Blue utility pinafore denimdress</a></td>
+                                                    <td>$76,00</td>
+                                                </tr> --}}
+
+                                                {{#if discount}}
+                                                <tr class="summary-subtotal">
+                                                    <td>Subtotal:</td>
+                                                    <td>{{tot}}</td>
+                                                </tr><!-- End .summary-subtotal -->
+                                                <tr>
+                                                    <td>Shipping:</td>
+                                                    <td>Free shipping</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Coupon discount:</td>
+                                                    <td>{{discount}}</td>
+                                                </tr>
+                                                <tr class="summary-total">
+                                                    <td>Total:</td>
+                                                    <td>{{discountPrice}}</td>
+                                                </tr><!-- End .summary-total -->
+
+                                                {{else}}
+                                                <tr class="summary-subtotal">
+                                                    <td>Subtotal:</td>
+                                                    <td>{{tot}}</td>
+                                                </tr><!-- End .summary-subtotal -->
+                                                <tr>
+                                                    <td>Shipping:</td>
+                                                    <td>Free shipping</td>
+                                                </tr>
+                                                <tr class="summary-total">
+                                                    <td>Total:</td>
+                                                    <td>{{tot}}</td>
+                                                </tr><!-- End .summary-total -->
+                                                {{/if}}
+                                            </tbody>
+                                        </table><!-- End .table table-summary -->
+
+                                        <div class="accordion-summary" id="accordion-payment">
+                                            {{!-- <div class="card">
+                                                <div class="card-header" id="heading-1">
+                                                    <h2 class="card-title">
+                                                        <a role="button" data-toggle="collapse" href="#collapse-1"
+                                                            aria-expanded="true" aria-controls="collapse-1">
+                                                            Direct bank transfer
+                                                        </a>
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-1" class="collapse show" aria-labelledby="heading-1"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">
+                                                        Make your payment directly into our bank account. Please use
+                                                        your Order ID as the payment reference. Your order will not be
+                                                        shipped until the funds have cleared in our account.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card --> --}}
+
+                                            {{!-- <div class="card">
+                                                <div class="card-header" id="heading-2">
+                                                    <h2 class="card-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                            href="#collapse-2" aria-expanded="false"
+                                                            aria-controls="collapse-2">
+                                                            Check payments
+                                                        </a>
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-2" class="collapse" aria-labelledby="heading-2"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">
+                                                        Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+                                                        Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card --> --}}
+
+                                            <div class="card">
+                                                <div class="card-header" id="heading-3">
+                                                    <h2 class="card-title">
+                                                        <label for="">Cash on Delivery</label>
+                                                        <input type="radio" name="paymentMethod" value="COD">
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-3" class="collapse" aria-labelledby="heading-3"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum
+                                                        dolor sit amet, consectetuer adipiscing elit. Donec odio.
+                                                        Quisque volutpat mattis eros.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card -->
+
+                                             <div class="card">
+                                                <div class="card-header" id="heading-3">
+                                                    <h2 class="card-title">
+                                                        <label for="">Paypal</label>
+                                                        <input type="radio" name="paymentMethod" value="Paypal">
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-3" class="collapse" aria-labelledby="heading-3"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum
+                                                        dolor sit amet, consectetuer adipiscing elit. Donec odio.
+                                                        Quisque volutpat mattis eros.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card -->
+
+                                            <div class="card">
+                                                <div class="card-header" id="heading-3">
+                                                    <h2 class="card-title">
+                                                        <label for="">Razorpay</label>
+                                                        <input type="radio" name="paymentMethod" value="Razorpay">
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-3" class="collapse" aria-labelledby="heading-3"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum
+                                                        dolor sit amet, consectetuer adipiscing elit. Donec odio.
+                                                        Quisque volutpat mattis eros.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card -->
+
+
+
+                                            {{!-- <div class="card">
+                                                <div class="card-header" id="heading-4">
+                                                    <h2 class="card-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                            href="#collapse-4" aria-expanded="false"
+                                                            aria-controls="collapse-4">
+                                                            PayPal <small class="float-right paypal-link">What is
+                                                                PayPal?</small>
+                                                        </a>
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-4" class="collapse" aria-labelledby="heading-4"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body">
+                                                        Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra
+                                                        non, semper suscipit, posuere a, pede. Donec nec justo eget
+                                                        felis facilisis fermentum.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card -->
+
+                                            <div class="card">
+                                                <div class="card-header" id="heading-5">
+                                                    <h2 class="card-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                            href="#collapse-5" aria-expanded="false"
+                                                            aria-controls="collapse-5">
+                                                            Credit Card (Stripe)
+                                                            <img src="assets/images/payments-summary.png"
+                                                                alt="payments cards">
+                                                        </a>
+                                                    </h2>
+                                                </div><!-- End .card-header -->
+                                                <div id="collapse-5" class="collapse" aria-labelledby="heading-5"
+                                                    data-parent="#accordion-payment">
+                                                    <div class="card-body"> Donec nec justo eget felis facilisis
+                                                        fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing
+                                                        elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum
+                                                        dolor sit ame.
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .collapse -->
+                                            </div><!-- End .card --> --}}
+                                        </div><!-- End .accordion -->
+
+                                        <button type="submit" class="btn btn-outline-primary-2">
+                                            <span>Place Order</span>
+                                        </button>
+                                    </div><!-- End .summary -->
+                                </aside><!-- End .col-lg-3 -->
+                            </div><!-- End .row -->
+                        </form>
+
+
+                    </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+        

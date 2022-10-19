@@ -1,0 +1,171 @@
+<style>
+    .hover-div {
+    padding: 20px 20px;
+    
+    min-height: 200px;
+    height: 370px;
+    width: 300px;
+    justify-content: center;
+}
+
+.hover-div {
+    border-top: 1px solid white;
+    background: #f6f9ff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    margin: 10px 0px;
+}
+
+.hover-div:hover {
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.32);
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
+
+<main id="main" class="main">
+
+          <div class="row">
+        <div class="col-md-4 ">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Total request</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">05</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">requests approved</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">0</h6>
+                     
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title text-danger">requests pending</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">0</h6>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            
+            
+      </div>
+      {{#each returnData}}
+        <div class="card" style="background: color 2F 4F 4F;" >
+            <div class="card-body">
+
+              <!-- Bordered Tabs Justified -->
+              <div class="tab-content pt-2 mt-5" id="borderedTabJustifiedContent">
+
+                <div class="row">
+        <div class="col-md-4">
+              <div class="hover-div">
+
+                <div class="card-body">
+                  <h5 class="card-title">Product Details</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <img src="/images/product/{{this.returnProducts.img.[3]}}" alt="Product image" style="width: 100px;height: 100px;">
+                      <p>Id: #{{this.returnProducts._id}}</p>
+                      <p>{{this.returnProducts.productname}}</p>
+                      <p>Product price: {{this.returnProducts.price}}</p>
+                      <p>Qty: {{this.orders.products.quantity}}</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="hover-div">
+
+                <div class="card-body">
+                  <h5 class="card-title">Delivery details</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <p>name: {{this.orders.deliveryDetails.name}}</p>
+                      <p>mobile:{{this.orders.deliveryDetails.mobile}}</p>
+                       <p>address:{{this.orders.deliveryDetails.address}},{{this.orders.deliveryDetails.street}}</p>
+                        <p>{{this.orders.deliveryDetails.pincode}}</p>
+                       
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="hover-div">
+
+                <div class="card-body">
+                  <h5 class="card-title">Return request</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <p>Reason:</p>
+                      <p>{{this.reason}}</p>
+                      <p>{{this.description}}</p>
+                      {{#if this.approved}}
+                      <button class="btn btn-success">Request approved</button>
+                      {{else}}
+                      <button class="btn btn-outline-danger" onclick="approveReturn('{{this.orders._id}}','{{this.returnProducts._id}}','{{this._id}}')">Approve return</button>
+                      {{/if}}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+                                
+                 
+              </div>
+               
+              {{!-- </div><!-- End Bordered Tabs Justified --> --}}
+
+            </div>
+        </div>
+        {{/each}}
+    </main>
+
+   

@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="logo">
+    </div>
+    <div class="text-center mt-4 name">
+        myPhone.com
+    </div>
+    {{#if valid}}
+    <div class="alert alert-danger text-center" role="alert">
+        Enter valid otp
+    </div>
+    {{/if}}
+
+    <form action="/verify" method="post" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="number" name="otp" id="number" placeholder="Enter OTP">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn mt-3" style="width: 200px;">Submit</button>
+        </div>
+    </form>
+    <div>
+        <div id="resendOtp" class="text-dark">
+        </div>
+
+        <div id="resendButton" style="display: none;">
+            <a href="/resendotp">resend otp</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="javascripts/otp.js"></script>
+
+

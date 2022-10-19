@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+  <title>Document</title>
+</head>
+<body style="background-color:white;">
+  
+  <section class="main" id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Total Orders</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">05</h6>
+                      <span class="text-success small pt-1 fw-bold">55%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Orders Delivered</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">0</h6>
+                      <span class="text-success small pt-1 fw-bold">0%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            <div class="col-md-4">
+              <div class="card info-card revenue-card">
+
+                <div class="card-body">
+                  <h5 class="card-title text-danger">Orders Pending</h5>
+
+                  <div class="d-flex align-items-center">
+
+                    <div class="ps-3">
+                      <h6 style="font-size: larger;">05</h6>
+                      <span class="text-success small pt-1 fw-bold">18%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+            
+            
+      </div>
+        <div class="mt-3">
+             {{!-- <div class="row mt-1">
+            <a href="/admin/add-user" class="btn btn-success mx-auto mt-5" style="width:150px;height: 50;" >add user</a>
+        </div> --}}
+      <table class="table" id="myTable">
+  <thead>
+    <tr>
+
+      <th scope="col">No</th>
+      <th scope="col">Date</th>
+       <th scope="col">Time</th>
+      <th scope="col">User Id</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">Mobile No</th>
+         <th scope="col">Discount</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Payment</th>
+        <th scope="col">Status</th>
+       <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each response}}
+    <tr>
+      
+      <td>{{@index}}</td>
+      <td>{{this.date}}</td>
+      <td>{{this.time}}</td>
+      <td>{{this.userDetails.email}}</td>
+      <td>{{this.deliveryDetails.pincode}}</td>
+      <td>{{this.deliveryDetails.mobile}}</td>
+      <td>{{this.discount}}</td>
+      {{#if this.total}}
+      <td>₹{{this.total}}</td>
+      {{else}}
+      <td>₹{{this.totalAmount}}</td>
+      {{/if}}
+      <td>{{this.paymentMethod}}</td>
+       <td>{{this.status}}</td>
+      <td><a href="/admin/order-details/{{this._id}}" class="btn btn-primary">More</a></td>
+
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+        </div>
+    </div>
+</section>
+
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+</body>
+</html>
+
+<script>
+   $(document).ready(function(){
+       $('#myTable').DataTable({
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+        $('td:eq(0)', nRow).html(iDisplayIndexFull +1);
+    }
+});
+       
+    });
+</script>

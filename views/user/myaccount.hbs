@@ -1,0 +1,67 @@
+<body>
+    {{#if changePass}}
+    <div class="alert alert-success text-center mx-auto" role="alert" style="width:300px;">
+          Password updated succesfully
+    </div>
+    {{/if}}
+
+    {{#if updateSuccess}}
+    <div class="alert alert-success text-center mx-auto" role="alert" style="width:300px;">
+        Profile updated succesfully
+    </div>
+    {{/if}}
+
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">My Account</h1>
+                    <h5 class="mt-2">Hello &nbsp;{{userData.name}}</h5>
+                    <p>{{userData.email}} | {{userData.phone}}</p>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <a href="/user-profile">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">My Profile</button>
+                </a>
+            </div>
+            <div class="col-md-4 mt-3">
+                <a href="/my-address">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">My Address</button>
+                </a>
+            </div>
+            <div class="col-md-4 mt-3">
+                <a href="/orders">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">My Orders</button>
+                </a>
+            </div>
+            <div class="col-md-4 mt-3">
+                <a href="/wishlist">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">My Wishlist</button>
+                </a>
+            </div>
+            <div class="col-md-4 mt-3">
+                <a href="/change-password">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">Change Password</button>
+                </a>
+            </div>
+            <div class="col-md-4 mt-3">
+                <a href="/logout">
+                    <button type="button" class="btn btn-outline-dark"
+                        style="width: 300px; height: 100px;font-weight: bold;">Sign out</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</body>
+
+
