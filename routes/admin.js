@@ -36,7 +36,7 @@ router.get('/product', controllers.prodData)
 
 // // ============================GET ADD PRODUCTS===========================
 
-router.get('/add-product', controllers.addPr oducts)
+router.get('/add-product', controllers.addProducts)
 
 // // ==============================GET ADD PRODUCTS===============================
 
