@@ -936,6 +936,14 @@ let findPopularBrands = (req, res) => {
   })
 }
 
+let filterProduct = (req, res) => {
+  productHelper.filterProducts(req.body).then((result) => {
+    console.log(result)
+    res.render('user/filterResult',{userLogin:true,result})
+  })
+}
+
+
 let logout = (req, res) => {
   req.session.loggedIn = ""
   console.log('destroyed');
@@ -1007,5 +1015,6 @@ module.exports = {
   searchResult,
   popularBrands,
   findPopularBrands,
+  filterProduct,
   logout
 }

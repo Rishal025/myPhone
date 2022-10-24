@@ -59,13 +59,7 @@ router.post('/verify', userController.verifyPost)
 router.get('/products', middlewares.products, userController.productData)
 
 
-router.post('/filter-products', (req, res) => {
-  console.log(req.body)
-  productHelper.filterProducts(req.body).then((result) => {
-    console.log(result)
-    res.render('user/filterResult',{userLogin:true,result})
-  })
-})
+router.post('/filter-products', userController.filterProduct)
 
 // ====================================GET CART=====================================
 
