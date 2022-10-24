@@ -248,7 +248,6 @@ let cart = (req, res) => {
     } else {
       res.render('user/cart', { userLogin: true, products })
     }
-    // let tot=total[0].grandTotal
 
   }).catch((e) => {
     console.log(e)
@@ -256,39 +255,41 @@ let cart = (req, res) => {
 }
 
 let productView = (req, res) => {
-  prodViewId = req.params.id
-  res.redirect('/productView')
-}
-
-let product_view = (req, res) => {
-  if (req.session.loggedIn) {
-    let user = req.session.user._id
-    let itemfound
-    productHelper.productsView(prodViewId).then(async (view) => {
-      cartCheck = await productHelper.findAddtoCartItems(prodViewId, user)
-      items = await productHelper.findProdForHome()
-      console.log(items)
-      console.log(cartCheck)
-      if (cartCheck.itemFound === true) {
-        itemfound = true
-      } else {
-        itemfound = false
-      }
-      res.render('user/product-view', { view, userLogin: true, itemfound,items})
-    }).catch((e) => {
-      console.log(e)
-    })
-
-  } else {
-    productHelper.productsView(prodViewId).then(async (view) => {
-      items = await productHelper.findProdForHome()
-      res.render('user/product-view', { view, userLogin: true,items })
-    }).catch((e) => {
-      console.log(e)
-    })
-
+  let pId= req.query.pId
+  if(ObjectId.isValid(pId)){
+    if (req.session.loggedIn) {
+      let user = req.session.user._id
+      let itemfound 
+      productHelper.productsView(pId).then(async (view) => {
+        cartCheck = await productHelper.findAddtoCartItems(pId, user)
+        items = await productHelper.findProdForHome()
+        console.log(items)
+        console.log(cartCheck)
+        if (cartCheck.itemFound === true) {
+          itemfound = true
+        } else {
+          itemfound = false
+        }
+        res.render('user/product-view', { view, userLogin: true, itemfound,items})
+      }).catch((e) => {
+        console.log(e)
+      })
+  
+    } else {
+      productHelper.productsView(pId).then(async (view) => {
+        items = await productHelper.findProdForHome()
+        res.render('user/product-view', { view, userLogin: true,items })
+      }).catch((e) => {
+        console.log(e)
+      })
+  
+    }
+  }else{
+    res.redirect('/*')
   }
+ 
 }
+
 
 let resendOtp = (req, res) => {
   if (mob) {
@@ -966,7 +967,7 @@ module.exports = {
   guestHome,
   cart,
   productView,
-  product_view,
+  // product_view,
   resendOtp,
   addToCart,
   addToWishlist,

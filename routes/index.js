@@ -67,11 +67,11 @@ router.get('/cart', middlewares.userAuthLogin, userController.cart)
 
 // ===========================GET PRODUCTVIEW ID=========================================
 
-router.get('/product-view/:id', userController.productView)
+router.get('/product-view', userController.productView)
 
 // ============================PRODUCT VIEW REDIRECTED================================
 
-router.get('/productView', userController.product_view)
+// router.get('/productView', userController.product_view)
 
 // ==============================GET RESEND OTP===========================================
 
