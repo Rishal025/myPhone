@@ -18,12 +18,12 @@
 				<tr>
 					<th>Order Id</th>
 					<th>Payment Method</th>
+					<th>Payment Status</th>
 					<th>Price</th>
 					<th>Discount</th>
 					<th>Total Amount</th>
 					<th>Order date</th>
 					<th>Order time</th>
-					<th>Status</th>
 					<th>Action</th>
 
 				</tr>
@@ -39,6 +39,7 @@
 					<td class="product-col">
 		                 {{this.paymentMethod}}
 					</td>
+					<td class="qty-col text-success"><span>{{this.status}}</span></td>
 
 					
 					<td class="price-col">₹{{this.totalAmount}}</td>
@@ -52,8 +53,6 @@
 
 					<td class="stock-col"><span>{{this.date}}</span></td>
 					<td class="stock-col"><span>{{this.time}}</span></td>
-					<td class="qty-col text-success"><span>{{this.status}}</span></td>
-
 					<td class="action-col">
 						<div class="dropdown">
 
