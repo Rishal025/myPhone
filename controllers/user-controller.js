@@ -254,7 +254,7 @@ let cart = (req, res) => {
 
 let productView = (req, res) => {
  
-  if(ObjectId.isValid(req.query.pId)){
+  // if(ObjectId.isValid(req.query.pId)){
     let pId= req.query.pId
     if (req.session.loggedIn) {
       let user = req.session.user._id
@@ -283,9 +283,10 @@ let productView = (req, res) => {
       })
   
     }
-  }else{
-    res.redirect('/*')
-  }
+  // }
+  // else{
+  //   res.redirect('/*')
+  // }
  
 }
 
