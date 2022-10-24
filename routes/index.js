@@ -101,12 +101,7 @@ router.post('/remove-products', middlewares.userAuthLogin, userController.remove
 
 router.get('/confirm-address', middlewares.userAuthLogin, userController.confirmAddress)
 
-router.post('/confirmAddress', (req, res) => {
-  addressHelper.selectAddress(req.body).then((response) => {
-    details = response
-    res.json(details)
-  })
-})
+router.post('/confirmAddress', userController.confirmAddressPost)
 
 // =================================ADD ADDRESS================================
 
@@ -135,30 +130,7 @@ router.get('/my-address', middlewares.userAuthLogin, userController.myAddress)
 // ====================================PROCEED TO CHECKOUT================================
 
 
-router.get('/proceed-to-checkout', async (req, res) => {
-  userHelpers.getCartProducts(req.session.user._id).then((response) => {
-    userHelpers.getProductTotal(req.session.user._id).then(async (total) => {
-      console.log('response');
-      console.log(response);
-      console.log('total');
-      console.log(total);
-      console.log('details')
-      console.log(details);
-      let coupon = await productHelper.getCouponPrice(req.session.user._id, total)
-      console.log('heyyyyyy')
-      let tot = total[0].grandTotal
-      discountPrice = coupon[0].discountPrice
-      discount = coupon[0].discountAmount
-      console.log(coupon[0].discountPrice)
-      let user = req.session.user
-      res.render('user/checkout', { userLogin: true, response, tot, user, details, discount, discountPrice })
-
-    })
-
-  })
-
-
-})
+router.get('/proceed-to-checkout', userController.proceedToCheckout)
 
 // ====================================FORGOT PASSWORD========================
 

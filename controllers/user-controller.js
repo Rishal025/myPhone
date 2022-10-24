@@ -389,16 +389,16 @@ let confirmAddress = async (req, res) => {
   })
 }
 
-// let confirmAddressPost = (req,res)=>{
-//   console.log('hiiii')
-//   console.log(req.body)
-//   addressHelper.selectAddress(req.body).then((response)=>{
-//     details = response
-//     res.json(details)
-//   }).catch((e)=>{
-//     console.log(e)
-//   })
-// }
+let confirmAddressPost = (req,res)=>{
+  console.log('hiiii')
+  console.log(req.body)
+  addressHelper.selectAddress(req.body).then((response)=>{
+    details = response
+    res.json(details)
+  }).catch((e)=>{
+    console.log(e)
+  })
+}
 
 let addAddress = (req, res) => {
   addressHelper.addAddress(req.body).then(() => {
@@ -513,30 +513,29 @@ let placeOrder = async (req, res) => {
   })
 }
 
-// let proceedToCheckout = async (req, res) => {
-//   userHelpers.getCartProducts(req.session.user._id).then((response) => {
-//     userHelpers.getProductTotal(req.session.user._id).then(async(total) => {
-//       console.log('response');
-//       console.log(response);
-//       console.log('total');
-//       console.log(total);
-//       console.log('details')
-//       console.log(details);
-//       let coupon =await productHelper.getCouponPrice(req.session.user._id, total)
-//       console.log('heyyyyyy')
-//       let tot = total[0].grandTotal
-//       discountPrice = coupon[0].discountPrice
-//       discount = coupon[0].discountAmount
-//       console.log(coupon[0].discountPrice)
-//       let user = req.session.user
-//           res.render('user/checkout', { userLogin: true, response, tot, user ,details, discount,discountPrice})
+let proceedToCheckout = async (req, res) => {
+  userHelpers.getCartProducts(req.session.user._id).then((response) => {
+    userHelpers.getProductTotal(req.session.user._id).then(async(total) => {
+      console.log('response');
+      console.log(response);
+      console.log('total');
+      console.log(total);
+      console.log('details')
+      console.log(details);
+      let coupon =await productHelper.getCouponPrice(req.session.user._id, total)
+      console.log('heyyyyyy')
+      let tot = total[0].grandTotal
+      discountPrice = coupon[0].discountPrice
+      discount = coupon[0].discountAmount
+      console.log(coupon[0].discountPrice)
+      let user = req.session.user
+          res.render('user/checkout', { userLogin: true, response, tot, user ,details, discount,discountPrice})
 
-//     })
+    })
 
-//   })
+  })
+}
 
-
-// }
 
 let verifyRazorPay = (req, res) => {
   userHelpers.verifyPayment(req.body).then(() => {
@@ -982,7 +981,7 @@ module.exports = {
   updateAddress,
   deleteAddress,
   myAddress,
-  // proceedToCheckout,
+  proceedToCheckout,
   placeOrder,
   verifyRazorPay,
   verifyPaymentAgain,
@@ -1016,5 +1015,6 @@ module.exports = {
   popularBrands,
   findPopularBrands,
   filterProduct,
+  confirmAddressPost,
   logout
 }
