@@ -253,8 +253,9 @@ let cart = (req, res) => {
 }
 
 let productView = (req, res) => {
-  let pId= req.query.pId
-  if(ObjectId.isValid(pId)){
+ 
+  if(ObjectId.isValid(req.query.pId)){
+    let pId= req.query.pId
     if (req.session.loggedIn) {
       let user = req.session.user._id
       let itemfound 
