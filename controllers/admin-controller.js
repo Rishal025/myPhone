@@ -96,6 +96,29 @@ let prodData = (req, res) => {
         console.log(e)
     })
 }
+let addProdPost = (req, res) => {
+    const files = req.files
+  
+    const file = files.map((file) => {
+      return file
+    })
+  
+    const fileName = file.map((file) => {
+      return file.filename
+    })
+    const product = req.body
+    product.img = fileName
+  
+    console.log(req.files);
+    productHelper.addProduct(req.body, (id) => {
+  
+      productHelper.AddProdStatus(req.body).then(() => {
+        res.redirect('/admin/product')
+  
+      })
+    })
+  
+  }
 
 let addProducts = async (req, res) => {
     try {
@@ -446,5 +469,6 @@ module.exports = {
     deleteBrandOffer,
     salesReport,
     returnRequest,
-    approveReturn
+    approveReturn,
+    addProdPost
 }

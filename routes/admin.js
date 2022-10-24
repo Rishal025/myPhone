@@ -40,29 +40,7 @@ router.get('/add-product', controllers.addProducts)
 
 // // ==============================GET ADD PRODUCTS===============================
 
-router.post('/addproduct', upload.array('image'), (req, res) => {
-  const files = req.files
-
-  const file = files.map((file) => {
-    return file
-  })
-
-  const fileName = file.map((file) => {
-    return file.filename
-  })
-  const product = req.body
-  product.img = fileName
-
-  console.log(req.files);
-  productHelper.addProduct(req.body, (id) => {
-
-    productHelper.AddProdStatus(req.body).then(() => {
-      res.redirect('/admin/product')
-
-    })
-  })
-
-})
+router.post('/addproduct', upload.array('image'), controllers.addProdPost)
 
 // // ================================GET OTP LOGIN===================================
 
