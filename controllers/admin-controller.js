@@ -275,6 +275,29 @@ let editBrand = (req, res) => {
    
 }
 
+let addBrand =  (req, res) => {
+    const files = req.files
+  
+    const file = files.map((file) => {
+      return file
+    })
+  
+    const fileName = file.map((file) => {
+      return file.filename
+    })
+    const product = req.body
+    product.img = fileName
+  
+    productHelper.brandManagement(product).then(function (response) {
+  
+      responsebr = response.brandsuccess;
+      responseErrbr = response.brandfailed;
+      res.redirect('/admin/add-brand');
+  
+    })
+  
+    }
+
 let updateBrand = async(req, res) => {
     console.log(req.body);
     let bId = req.body.id
@@ -470,5 +493,6 @@ module.exports = {
     salesReport,
     returnRequest,
     approveReturn,
-    addProdPost
+    addProdPost,
+    addBrand
 }

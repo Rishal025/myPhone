@@ -88,28 +88,7 @@ router.post('/management', controllers.managementsPostMethod)
 
 // ==================================BRAND MANAGEMENT========================
 
-router.post('/brand-management', upload.any('thumbnail'), (req, res) => {
-  const files = req.files
-
-  const file = files.map((file) => {
-    return file
-  })
-
-  const fileName = file.map((file) => {
-    return file.filename
-  })
-  const product = req.body
-  product.img = fileName
-
-  productHelper.brandManagement(product).then(function (response) {
-
-    responsebr = response.brandsuccess;
-    responseErrbr = response.brandfailed;
-    res.redirect('/admin/add-brand');
-
-  })
-
-  })
+router.post('/brand-management', upload.any('thumbnail'), controllers.addBrand)
 
 // ==========================ADD BRAND=========================
 
