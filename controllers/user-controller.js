@@ -18,9 +18,7 @@ let updateSuccess
 let details
 let editAddress
 let Orderdetails
-let orderFailed
 let currentPassErr
-let prodViewId
 let bId
 let editValue
 
@@ -967,7 +965,6 @@ module.exports = {
   guestHome,
   cart,
   productView,
-  // product_view,
   resendOtp,
   addToCart,
   addToWishlist,
@@ -975,7 +972,6 @@ module.exports = {
   changeProductQuantity,
   removeCartProds,
   confirmAddress,
-  // confirmAddressPost
   addAddress,
   editfillAddress,
   edit_address,

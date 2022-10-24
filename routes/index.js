@@ -69,10 +69,6 @@ router.get('/cart', middlewares.userAuthLogin, userController.cart)
 
 router.get('/product-view', userController.productView)
 
-// ============================PRODUCT VIEW REDIRECTED================================
-
-// router.get('/productView', userController.product_view)
-
 // ==============================GET RESEND OTP===========================================
 
 router.get('/resendotp', userController.resendOtp)
