@@ -51,8 +51,11 @@ let productData = (req, res) => {
   console.log('products' + products[0].stock)
   productHelper.getBrand().then((brand) => {
     console.log(brand)
-    res.render('user/category-list', { userLogin: true, products, brand, next, previous, pages, pageCount, currentPage, style: true })
-
+    if(req.session.loggedIn){
+      res.render('user/category-list', {userLogin:true, products, brand, next, previous, pages, pageCount, currentPage, style: true })
+    }else{
+      res.render('user/category-list', {userLogout:true, products, brand, next, previous, pages, pageCount, currentPage, style: true })
+    }
   }).catch((e) => {
     console.log(e)
   })
@@ -277,7 +280,7 @@ let productView = (req, res) => {
     } else {
       productHelper.productsView(pId).then(async (view) => {
         items = await productHelper.findProdForHome()
-        res.render('user/product-view', { view, userLogin: true,items })
+        res.render('user/product-view', { view, userLogout: true,items })
       }).catch((e) => {
         console.log(e)
       })
@@ -744,7 +747,11 @@ let userProfileUpdate = (req, res) => {
 
 let exploreSamsung = (req, res) => {
   categoryHelper.getSamsung().then((result) => {
-    res.render('user/samsung', { result, userLogin: true })
+    if(req.session.loggedIn){
+      res.render('user/samsung', { result, userLogin: true })
+    }else{
+      res.render('user/samsung', { result, userLogout: true })
+    }
   }).catch(() => {
     console.log('error exploring samsung');
   })
@@ -752,7 +759,11 @@ let exploreSamsung = (req, res) => {
 
 let exploreOneplus = (req, res) => {
   categoryHelper.getOneplus().then((result) => {
-    res.render('user/oneplus', { result, userLogin: true })
+    if(req.session.loggedIn){
+      res.render('user/oneplus', { result, userLogin: true })
+    }else{
+      res.render('user/oneplus', { result, userLogout: true })
+    }
   }).catch(() => {
     console.log('error exploring oneplus');
   })
@@ -760,7 +771,11 @@ let exploreOneplus = (req, res) => {
 
 let exploreApple = (req, res) => {
   categoryHelper.getApple().then((result) => {
-    res.render('user/apple', { result, userLogin: true })
+    if(req.session.loggedIn){
+      res.render('user/apple', { result, userLogin: true })
+    }else{
+      res.render('user/apple', { result, userLogout: true })
+    }
   }).catch(() => {
     console.log('error exploring apple');
   })
@@ -932,14 +947,22 @@ let popularBrands = (req, res) => {
 
 let findPopularBrands = (req, res) => {
   categoryHelper.findAllBrand(bId).then((products) => {
-    res.render('user/brand-list', { userLogin: true, products })
+    if(req.session.loggedIn){
+      res.render('user/brand-list', { userLogin: true, products })
+    }else{
+      res.render('user/brand-list', { userLogout: true, products })
+    }
   })
 }
 
 let filterProduct = (req, res) => {
   productHelper.filterProducts(req.body).then((result) => {
     console.log(result)
-    res.render('user/filterResult',{userLogin:true,result})
+    if(req.session.loggedIn){
+      res.render('user/filterResult',{userLogin:true,result})
+    }else{
+      res.render('user/filterResult',{userLogout:true,result})
+    }
   })
 }
 
