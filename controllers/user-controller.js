@@ -862,9 +862,7 @@ let addtoWishlist = (req, res) => {
 let wishlist = (req, res) => {
   if (req.session.loggedIn) {
     productHelper.getWishlist(req.session.user._id).then((products) => {
-      console.log(products)
       let notFound = products.wishlistNotFount
-      console.log('notFound:' + notFound)
       res.render('user/wishlist', { userLogin: true, products, notFound })
     }).catch((e) => {
       console.log(e)
@@ -878,8 +876,6 @@ let confirmCoupon = async (req, res) => {
   let userId = req.session.user._id
   let total = await userHelpers.getCartProducts(userId)
   productHelper.confirmCoupon(req.body, userId, total).then((response) => {
-    console.log('confirmed')
-    console.log(response)
     res.json(response)
   }).catch((e) => {
     console.log(e)

@@ -273,30 +273,21 @@ module.exports = {
             let response = {}
             let couponFind = await db.get().collection(collection.COUPON_COLLECTION).findOne({ couponCode: couponCode })
             if (couponFind) {
-
-                console.log('coupon found')
                 response.couponFind = true
-                console.log('coupon')
-                console.log(couponFind);
 
                 if (time > couponFind.expiredate) {
-                    console.log('coupon expired')
                     response.expired = true
                     resolve(response)
                 }
                 else {
                     response.expired = false
-                    console.log('coupon not expired');
 
                     let couponAlreadyUsed = await db.get().collection(collection.COUPONALREADYUSED_COLLECTION).findOne({ couponId: ObjectId(couponFind._id), userId: ObjectId(userId) })
-                    console.log('already:' + couponAlreadyUsed)
                     if (couponAlreadyUsed) {
-                        console.log('already used');
                         response.alreadyUsed = true
 
                         resolve(response)
                     } else {
-                        console.log('not used')
                         response.alreadyUsed = false
                         response.couponSuccess = 'coupon applied successfully'
                         let discount = couponFind.discount

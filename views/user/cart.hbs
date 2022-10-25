@@ -46,7 +46,7 @@
 													</h3><!-- End .product-title -->
 												</div><!-- End .product -->
 											</td>
-											<td class="price-col">₹<span id="{{this.product._id}}prices">{{this.product.price}}</span></td>
+											<td class="price-col">Rs.<span id="{{this.product._id}}prices">{{this.product.price}}</span></td>
                                             
 											<td class="quantity-col">
                                                 <button class="btn-remove btn-dark mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{this.user}}',-1)" style="width: 30px;">-</button>
@@ -55,7 +55,7 @@
                                                 <p class="text-red" id="outOfStockpara" style="display: none;">Out of stock</p>
                                             </td>
                                             
-											<td class="total-col" >₹<span id="{{this.product._id}}price">{{this.total}}</span></td>
+											<td class="total-col" >Rs.<span id="{{this.product._id}}price">{{this.total}}</span></td>
                                 
 											<td class="remove-col"><button class="btn-remove btn-danger" onclick="removeCartProducts('{{this._id}}','{{this.product._id}}')"><i class="icon-close"></i></button></td>
 										</tr>
@@ -134,7 +134,7 @@
 														<p >Free Shipping</p>
 													</div><!-- End .custom-control -->
 	                							</td>
-	                							<td>$0.00</td>
+	                							<td>Rs.0.00</td>
 	                						</tr><!-- End .summary-shipping-row -->
                                         {{#if discount}}
                                             <tr class="summary-shipping-row">

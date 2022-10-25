@@ -574,7 +574,8 @@ module.exports = {
         let ProductPrice = parseInt(product.price)
         product.price = ProductPrice
 
-        offerPrice = (discount / 100) * product.price
+        offer = (discount / 100) * product.price
+        let offerPrice = Math.trunc( offer )
         totalPrice = product.price - offerPrice
 
         return new Promise((resolve, reject) => {
