@@ -95,6 +95,7 @@ let home = (req, res) => {
   cartCount = null
   console.log(req.session.user)
   userHelpers.getCartCount(user._id).then(async (cartCount) => {
+    
     let wishlistCount = await userHelpers.getWishlistCount(user._id)
     let popularBrands = await categoryHelper.getAllBrands()
     let products = await productHelper.findProdForHome()
@@ -455,6 +456,7 @@ let myAddress = async (req, res) => {
 }
 
 let placeOrder = async (req, res) => {
+
   console.log('rrrrrrrrrrrrrrr');
   console.log(req.body)
   console.log('rrrrrrrrrrrrrrr');
@@ -567,7 +569,7 @@ let myAccount = async (req, res) => {
     changePass = false
     updateSuccess = false
   }
-  catch {
+  catch (e){
     console.log('error occured')
   }
 
@@ -861,7 +863,7 @@ let addtoWishlist = (req, res) => {
 
 let wishlist = (req, res) => {
   if (req.session.loggedIn) {
-    productHelper.getWishlist(req.session.user._id).then((products) => {
+    productHelper.   getWishlist(req.session.user._id).then((products) => {
       let notFound = products.wishlistNotFount
       res.render('user/wishlist', { userLogin: true, products, notFound })
     }).catch((e) => {

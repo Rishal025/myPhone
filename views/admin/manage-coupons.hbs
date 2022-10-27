@@ -52,22 +52,25 @@
                             
 
                             <!-- Vertical Form -->
-                            <form class="row g-3 mt-5" method="post" action="/admin/add-coupon">
+                            <form class="row g-3 mt-5" method="post" action="/admin/add-coupon" onsubmit="return validation()">
                                 <div class="col-12 ">
                                 <label for="inputNanme4" class="form-label">Coupon Code</label>
-                                <input type="text" name="couponCode" class="form-control" id="inputNanme4">
+                                <input type="text" name="couponCode" class="form-control" id="inputNanme4" onkeyup="nameValidation()">
+                                <span id="Name" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
-                                <label for="inputEmail4" class="form-label">Discription</label>
+                                <label for="inputEmail4" class="form-label" >Discription (optional)</label>
                                 <input type="text" name="discription" class="form-control" id="inputEmail4">
                                 </div>
                                 <div class="col-12">
-                                <label for="inputPassword4" class="form-label">Discount</label>
-                                <input type="tel" name="discount" class="form-control" id="inputPassword4">
+                                <label for="inputPassword4" class="form-label" >Discount</label>
+                                <input type="number" name="discount" class="form-control" id="inputPassword4" onkeyup="discountValidation()">
+                                <span id="Discount" class="text-danger"></span>
                                 </div>
                                 <div class="col-12">
                                 <label for="inputAddress" class="form-label">Date</label>
-                                <input type="date" name="expiredate" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <input type="date" name="expiredate" class="form-control" id="inputAddress" onkeyup="dateValidation()">
+                                 <span id="Date" class="text-danger"></span>
                                 </div>
                                 <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -126,4 +129,54 @@
                  }
               });
 }
+
+
+ var errorDiscount = document.getElementById('Discount')
+ var errorName = document.getElementById('Name')
+ var errorDate = document.getElementById('Date')
+function discountValidation(){
+const discount = document.getElementById('inputPassword4').value;
+            if (discount == "") {
+                errorDiscount.innerHTML = '*required'
+                return false
+            }
+            else if(discount>60){
+              errorDiscount.innerHTML = '*not allowed! reduce percent'
+                return false
+            }
+             errorDiscount.innerHTML = null
+            return true
+
+}
+
+function nameValidation(){
+const coupon = document.getElementById('inputNanme4').value;
+            if (coupon == "") {
+                errorName.innerHTML = '*required'
+                return false
+            }
+            errorName.innerHTML = null
+            return true
+}
+
+function dateValidation(){
+const expireDate = document.getElementById('inputAddress').value;
+            if (expireDate == "") {
+                errorDate.innerHTML = '*required'
+                return false
+            }
+            errorDate.innerHTML = null
+            return true
+}
+
+
+
+
+
+ function validation() {
+            if (!discountValidation() || !nameValidation() || dateValidation()) {
+                return false
+            }
+            return true
+        }
 </script>
