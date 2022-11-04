@@ -7,6 +7,7 @@ const addressHelper = require('../helpers/address-Helper')
 var paypal = require('paypal-rest-sdk');
 const adminHelper = require('../helpers/admin-helper');
 const { ObjectId } = require('mongodb');
+const { response } = require('../app');
 var router = express.Router();
 
 let errMessage = ""
@@ -237,11 +238,8 @@ let cart = (req, res) => {
 
   userHelpers.getCartProducts(user._id).then(async (products) => {
     let total = await userHelpers.getProductTotal(user._id)
-    console.log(total)
-    console.log('sssssssssssssssss' + products);
     if (total[0]) {
       let coupon = await productHelper.getCouponPrice(req.session.user._id, total)
-      console.log('heyyyyyy')
       discountPrice = coupon[0].discountPrice
       discount = coupon[0].discountAmount
       console.log(coupon[0].discountPrice)
@@ -555,7 +553,12 @@ let verifyPaymentAgain = (req, res) => {
 }
 
 let orderSuccess = (req, res) => {
-  res.render('user/orderSuccess', { userLogin: true })
+  orderHelper.orderSummery().then((order)=>{
+    let orderId = order[0]._id
+    orderHelper.findOrderSummery(orderId).then((response)=>{
+      res.render('user/orderSuccess', { userLogin: true, order, response})
+    })
+  })
 }
 
 let orderfailed = (req, res) => {

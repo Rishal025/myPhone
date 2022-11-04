@@ -13,4 +13,102 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 
+
+
+ <section class="h-100 h-custom" style="background-color: white">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card border-top border-bottom border-3" style="border-color: #800080; !important;">
+          <div class="card-body p-5">
+
+            <p class="lead fw-bold mb-5 text-center" style="color: #800080;">Purchase Reciept</p>
+
+            <div class="row">
+
+              <div class="col mb-3">
+                <p class="small text-muted mb-1">Date</p>
+                <p>{{response.date}}</p>
+              </div>
+              <div class="col mb-3">
+                <p class="small text-muted mb-1">Order No.</p>
+                <p>{{response._id}}</p>
+              </div>
+            </div>
+           
+            <div class="mx-n5 px-5 py-4" style="background-color: rgb(248, 235, 235)">
+                  {{#each order}}
+              <div class="row">
+                <div class="col-md-8 col-lg-3">
+                  <img src="/images/product/{{this.product.img.[0]}}" height="60px" width="80px" alt="">
+                </div>
+                <div class="col-md-8 col-lg-6">
+                  <p>{{this.product.productname}}</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <p>Rs.{{this.product.price}}</p>
+                </div>
+              </div>
+                {{/each}}
+              <div class="row">
+                 <div class="col-md-8 col-lg-5">
+                  <p class="mb-0 ml-auto"> </p>
+                </div>
+
+                <div class="col-md-8 col-lg-4">
+                  <p class="mb-0 ml-auto">Shipping</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <p class="mb-0">Rs. 0.00</p>
+                </div>
+              </div>
+            
+            </div>
+
+            <div class="row my-4">
+              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+                <p class="lead fw-bold mb-0" style="color: #800080;">Rs.{{response.totalAmount}}</p>
+              </div>
+            </div>
+
+            {{!-- <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
+
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="horizontal-timeline">
+
+                  <ul class="list-inline items d-flex justify-content-between">
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Ordered</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Shipped</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">On the way
+                      </p>
+                    </li>
+                    <li class="list-inline-item items-list text-end" style="margin-right: 8px;">
+                      <p style="margin-right: -8px;">Delivered</p>
+                    </li>
+                  </ul>
+
+                </div>
+
+              </div>
+            </div> --}}
+
+            <p class="mt-4 pt-2 mb-0">Want any help? <a href=" " style="color: #800080;">Please contact
+                us</a></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       

@@ -262,7 +262,11 @@ var options = {
 var rzp1 = new Razorpay(options);
 rzp1.open();
 }
-function verifyPayment(payment,order){
+function     
+
+
+
+verifyPayment(payment,order){
     $.ajax({
         url:'/verify-razorpay-payment',
         data:{
